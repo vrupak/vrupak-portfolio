@@ -78,15 +78,15 @@
           {
             role: 'Software Engineer - HEAL Lab, ASU',
             period: '07/2024 — Present',
-            description: 'Integrating GIFT with a VR training app under Dr. Kevin Gary, implemented data transfer via RAW sockets and Kafka for improved security and scalability.'
+            description: 'Integrated GIFT with a Unity VR training app, improved scalability with RAW sockets and Kafka, refactored legacy code following SOLID principles, and developed a mock Unity scene for course integration and control.'
           },
           {
             role: 'Unity VR and Game Developer - SUCCESS camp, ASU',
             period: '05/2024 — 07/2024',
-            description: 'Led a SUCCESS summer camp session on game development and VR, teaching 6th-12th graders using a Unity 2.5D runner game and a VR game on Meta Quest 2 to explore fundamental concepts.'
+            description: 'Led a SUCCESS (Stranger Things themed) summer camp session on game development and VR, teaching 6th-12th graders using a Unity 2.5D runner game and a VR game on Meta Quest 2 to explore fundamental concepts.'
           },
           {
-            role: 'Web Developer Intern - Kyrion Technologies',
+            role: 'Web Developer Intern - Kyrion Technologies, Delhi',
             period: '06/2020 — 08/2020',
             description: 'Completed a web developer course, gaining hands-on experience in HTML, CSS, JavaScript, and agile development through practical projects and teamwork.'
           }
@@ -97,17 +97,22 @@
             value: 85
           },
           {
-            name: 'JavaScript/Vue.js',
+            name: 'Game Development',
+            value: 85
+          },
+          {
+            name: 'Prototyping & UI/UX Design',
             value: 80
           },
           {
-            name: 'Backend Development',
+            name: 'Version Control & CI/CD',
             value: 75
           },
           {
-            name: 'Cloud Services',
+            name: 'Backend Development',
             value: 70
-          }
+          },
+          
         ]
       }
     }

@@ -15,6 +15,10 @@
           I focus on writing clean, maintainable code while ensuring optimal performance and accessibility.
           I stay current with the latest technologies and best practices in software development.
         </p>
+
+        <p>
+          Outside of work, I am passionate about creative pursuits like stipple sketching and staying active through gym workouts, table tennis, and gaming.
+        </p>
       </section>
   
       <section class="service">
@@ -90,22 +94,22 @@
         services: [
           {
             title: 'Web Development',
-            description: 'High-quality development of sites at the professional level.',
+            description: 'Dynamic, user-focused web applications using Vue.js, React, Spring Boot, and Node.js.',
             icon: require('@/assets/logo.png')
           },
           {
-            title: 'Mobile Apps',
-            description: 'Professional development of applications for iOS and Android.',
+            title: 'Game Development',
+            description: '2D, 3D and VR games in Unity.',
             icon: require('@/assets/logo.png')
           },
           {
             title: 'Web Design',
-            description: 'The most modern and high-quality design made at a professional level.',
+            description: 'Interactive prototypes using Axure RP 10 to enhance user experience and address usability issues.',
             icon: require('@/assets/logo.png')
           },
           {
             title: 'API Development',
-            description: 'Professional development of robust and scalable APIs.',
+            description: 'Scalable RESTful APIs with Spring Boot, following best practices for maintainability.',
             icon: require('@/assets/logo.png')
           }
         ],
