@@ -24,7 +24,7 @@
       <section class="timeline">
         <div class="title-wrapper">
           <div class="icon-box">
-            <ion-icon name="book-outline"></ion-icon>
+            <ion-icon name="laptop-outline"></ion-icon>
           </div>
           <h3 class="h3">Experience</h3>
         </div>
@@ -145,7 +145,7 @@
   }
   
   .timeline-list span {
-    color: var(--vegas-gold);
+    color: var(--deep-cyan);
     font-weight: var(--fw-400);
     line-height: 1.6;
   }

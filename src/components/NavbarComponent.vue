@@ -84,7 +84,7 @@
   }
   
   .navbar-link.active {
-    color: var(--orange-yellow-crayola);
+    color: var(--sky-cyan);
   }
   
   @media (max-width: 1023px) {

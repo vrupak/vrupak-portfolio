@@ -43,12 +43,12 @@ input, textarea {
 }
 
 ::selection {
-  background: var(--orange-yellow-crayola);
+  background: var(--sky-cyan);
   color: var(--smoky-black);
 }
 
 :focus { 
-  outline-color: var(--orange-yellow-crayola);
+  outline-color: var(--sky-cyan);
 }
 
 /* Common reusable styles */
@@ -79,7 +79,7 @@ article {
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  color: var(--orange-yellow-crayola);
+  color: var(--sky-cyan);
   box-shadow: var(--shadow-1);
   z-index: 1;
 }
@@ -146,7 +146,7 @@ main {
 }
 
 .has-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--orange-yellow-crayola);
+  background: var(--sky-cyan);
   border-radius: 5px;
 }
 

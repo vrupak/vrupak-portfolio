@@ -95,22 +95,22 @@
           {
             title: 'Web Development',
             description: 'Dynamic, user-focused web applications using Vue.js, React, Spring Boot, and Node.js.',
-            icon: require('@/assets/logo.png')
+            icon: require('@/assets/web-development.png')
           },
           {
             title: 'Game Development',
             description: '2D, 3D and VR games in Unity.',
-            icon: require('@/assets/logo.png')
+            icon: require('@/assets/game-development.png')
           },
           {
             title: 'Web Design',
             description: 'Interactive prototypes using Axure RP 10 to enhance user experience and address usability issues.',
-            icon: require('@/assets/logo.png')
+            icon: require('@/assets/web-design.png')
           },
           {
             title: 'API Development',
             description: 'Scalable RESTful APIs with Spring Boot, following best practices for maintainability.',
-            icon: require('@/assets/logo.png')
+            icon: require('@/assets/api.png')
           }
         ],
         // testimonials: [

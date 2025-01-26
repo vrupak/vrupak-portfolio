@@ -227,7 +227,7 @@
 .project-item-icon-box {
   --scale: 0.8;
   background: var(--jet);
-  color: var(--orange-yellow-crayola);
+  color: var(--sky-cyan);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -304,7 +304,7 @@
   }
 
   .filter-item button.active {
-    color: var(--orange-yellow-crayola);
+    color: var(--sky-cyan);
   }
 
   .filter-select-box {
