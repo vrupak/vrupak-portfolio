@@ -1,123 +1,151 @@
 <template>
-    <article class="portfolio" data-page="portfolio">
-      <header>
-        <h2 class="h2 article-title">Portfolio</h2>
-      </header>
-  
-      <section class="projects">
-        <ul class="filter-list">
-          <li v-for="category in categories" :key="category" class="filter-item">
-            <button 
-              :class="{ active: selectedCategory === category }"
-              @click="filterProjects(category)"
-            >
-              {{ category }}
-            </button>
-          </li>
-        </ul>
-  
-        <div class="filter-select-box">
-          <button class="filter-select" @click="toggleSelect">
-            <div class="select-value">{{ selectedCategory }}</div>
-            <div class="select-icon">
-              <ion-icon name="chevron-down"></ion-icon>
-            </div>
-          </button>
-  
-          <ul class="select-list" :class="{ active: isSelectOpen }">
-            <li v-for="category in categories" :key="category" class="select-item">
-              <button @click="filterProjects(category)">{{ category }}</button>
-            </li>
-          </ul>
-        </div>
-  
-        <ul class="project-list">
-          <li 
-            v-for="project in filteredProjects" 
-            :key="project.id" 
-            class="project-item"
-            :class="{ active: isProjectVisible(project) }"
-            :data-filter-item="true"
-            :data-category="project.category"
+  <article class="portfolio" data-page="portfolio">
+    <header>
+      <h2 class="h2 article-title">Portfolio</h2>
+    </header>
+
+    <section class="projects">
+      <!-- Rest of the filter UI remains the same -->
+      <ul class="filter-list">
+        <li v-for="category in categories" :key="category" class="filter-item">
+          <button 
+            :class="{ active: selectedCategory === category }"
+            @click="filterProjects(category)"
           >
-            <a :href="project.link">
-              <figure class="project-img">
-                <div class="project-item-icon-box">
-                  <ion-icon name="eye-outline"></ion-icon>
-                </div>
-                <img 
-                  :src="require('@/assets/logo.png')" 
-                  :alt="project.title"
-                  loading="lazy"
-                >
-              </figure>
-  
-              <h3 class="project-title">{{ project.title }}</h3>
-              <p class="project-category">{{ project.category }}</p>
-            </a>
+            {{ category }}
+          </button>
+        </li>
+      </ul>
+
+      <div class="filter-select-box">
+        <button class="filter-select" @click="toggleSelect">
+          <div class="select-value">{{ selectedCategory }}</div>
+          <div class="select-icon">
+            <ion-icon name="chevron-down"></ion-icon>
+          </div>
+        </button>
+
+        <ul class="select-list" :class="{ active: isSelectOpen }">
+          <li v-for="category in categories" :key="category" class="select-item">
+            <button @click="filterProjects(category)">{{ category }}</button>
           </li>
         </ul>
-      </section>
-    </article>
+      </div>
+
+      <ul class="project-list">
+        <li 
+          v-for="project in filteredProjects" 
+          :key="project.id" 
+          class="project-item"
+          :class="{ active: isProjectVisible(project) }"
+          :data-filter-item="true"
+          :data-category="project.category"
+        >
+          <a :href="project.link" target="_blank">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <ion-icon name="eye-outline"></ion-icon>
+              </div>
+              <img 
+                :src="getImageUrl(project.image)" 
+                :alt="project.title"
+                loading="lazy"
+              >
+            </figure>
+
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-category">{{ project.category }}</p>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </article>
 </template>
-  
+
 <script>
-  export default {
-    name: 'PortfolioComponent',
-    data() {
-      return {
-        selectedCategory: 'All',
-        isSelectOpen: false,
-        categories: ['All', 'Web Development', 'Applications', 'Web Design'],
-        projects: [
-          {
-            id: 1,
-            title: 'Test1',
-            category: 'Web Development',
-            link: '#',
-            image: 'logo.png'
-          },
-          {
-            id: 2,
-            title: 'Test2',
-            category: 'Applications',
-            link: '#',
-            image: 'logo.png'
-          },
-          {
-            id: 3,
-            title: 'Test3',
-            category: 'Web Design',
-            link: '#',
-            image: 'logo.png'
-          }
-          // Add more projects as needed
-        ]
-      }
-    },
-    computed: {
-      filteredProjects() {
-        if (this.selectedCategory === 'All') {
-          return this.projects
-        }
-        return this.projects.filter(project => project.category === this.selectedCategory)
-      }
-    },
-    methods: {
-      filterProjects(category) {
-        this.selectedCategory = category
-        this.isSelectOpen = false
+export default {
+name: 'PortfolioComponent',
+data() {
+  return {
+    selectedCategory: 'All',
+    isSelectOpen: false,
+    categories: ['All', 'Web Development', 'Games', 'Web Design'],
+    projects: [
+      {
+        id: 1,
+        title: '2D/3D Rendering in the Web',
+        category: 'Web Development',
+        link: 'https://ser-421.vercel.app/threejs',
+        image: 'RenderingInWeb.png'  // Update with actual image name
       },
-      toggleSelect() {
-        this.isSelectOpen = !this.isSelectOpen
+      {
+        id: 2,
+        title: 'Agile/Lean Metrics Calculator',
+        category: 'Web Development',
+        link: 'https://github.com/SER516-Clever/SER516-Team-Clever',
+        image: 'RoomVR.png'  // Update with actual image name
       },
-      isProjectVisible(project) {
-        return this.selectedCategory === 'All' || project.category === this.selectedCategory
+      {
+        id: 3,
+        title: 'Forbidden Vault',
+        category: 'Games',
+        link: 'https://github.com/Kushagra1480/SER594_ForbiddenVaults',
+        image: 'FVault2.png'  // Update with actual image name
+      },
+      {
+        id: 4,
+        title: 'ST Runner',
+        category: 'Games',
+        link: '#',
+        image: 'Runner.png'  // Update with actual image name
+      },
+      {
+        id: 5,
+        title: 'ST Room VR',
+        category: 'Games',
+        link: '#',
+        image: 'RoomVR.png'
+      },
+      {
+        id: 6,
+        title: 'Fragrance.net Redesign',
+        category: 'Web Design',
+        link: 'https://github.com/vrupak/Usability-Enhancement-Project-Fragrance.net-Redesign',
+        image: 'Fragrance.png'  // Update with actual image name
       }
+    ]
+  }
+},
+computed: {
+  filteredProjects() {
+    if (this.selectedCategory === 'All') {
+      return this.projects
+    }
+    return this.projects.filter(project => project.category === this.selectedCategory)
+  }
+},
+methods: {
+  filterProjects(category) {
+    this.selectedCategory = category
+    this.isSelectOpen = false
+  },
+  toggleSelect() {
+    this.isSelectOpen = !this.isSelectOpen
+  },
+  isProjectVisible(project) {
+    return this.selectedCategory === 'All' || project.category === this.selectedCategory
+  },
+  getImageUrl(imageName) {
+    try {
+      return require(`@/assets/portfolio/${imageName}`)
+    } catch (error) {
+      console.warn(`Image not found: ${imageName}`)
+      return require('@/assets/portfolio/RoomVR.png') // Fallback image
     }
   }
+}
+}
 </script>
-
 <style scoped>
 .filter-list { 
   display: none; 
@@ -202,10 +230,11 @@
 .project-img {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 170px;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 15px;
+  background: var(--eerie-black-1);
 }
 
 .project-img::before {
@@ -224,6 +253,18 @@
   background: hsla(0, 0%, 0%, 0.5);
 }
 
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: var(--transition-1);
+}
+
+.project-img:hover img {
+  transform: scale(1.1);
+}
+
 .project-item-icon-box {
   --scale: 0.8;
   background: var(--jet);
@@ -236,24 +277,13 @@
   padding: 18px;
   border-radius: 12px;
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
   transition: var(--transition-1);
 }
 
 .project-img:hover .project-item-icon-box {
   --scale: 1;
   opacity: 1;
-}
-
-.project-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition-1);
-}
-
-.project-img:hover img {
-  transform: scale(1.1);
 }
 
 .project-title,
@@ -273,14 +303,6 @@
   color: var(--light-gray-70);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
-}
-
-/* Media Queries */
-@media (min-width: 450px) {
-  .project-img,
-  .blog-banner-box { 
-    height: auto; 
-  }
 }
 
 @media (min-width: 768px) {
