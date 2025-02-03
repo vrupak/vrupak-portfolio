@@ -21,11 +21,13 @@
 
       <ol class="timeline-list">
         <li v-for="(edu, index) in education" :key="index" class="timeline-item">
-          <h4 class="h4 timeline-item-title">{{ edu.school }}</h4>
+          <div class="education-header">
+            <h4 class="h4 timeline-item-title">{{ edu.school }}</h4>
+            <span class="gpa-text" style="font-weight: 700;">GPA: {{ edu.gpa }}</span>
+          </div>
           <span>{{ edu.period }}</span>
           <p class="timeline-text">
             {{ edu.description }}
-            <span class="gpa-text">GPA: {{ edu.gpa }}</span>
           </p>
         </li>
       </ol>
@@ -143,7 +145,7 @@ export default {
 
 .download-icon {
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 0px;
   font-size: 1.2em;
   vertical-align: middle;
   transition: all 0.3s ease;
@@ -172,10 +174,17 @@ export default {
 
 .timeline-item:not(:last-child) { margin-bottom: 20px; }
 
+.education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
 .timeline-item-title {
   font-size: var(--fs-6);
   line-height: 1.3;
-  margin-bottom: 7px;
+  margin-bottom: 0;
 }
 
 .timeline-list span {
@@ -213,12 +222,10 @@ export default {
 }
 
 .gpa-text {
-  display: block;
-  margin-top: 5px;
+  color: var(--deep-cyan);
   font-weight: var(--fw-400);
 }
 
-/* Skills styles */
 .skills-title { margin-bottom: 20px; }
 
 .skills-list { padding: 20px; }
@@ -257,7 +264,6 @@ export default {
   align-items: center;
   gap: 10px;
 }
-
 
 @media (min-width: 768px) {
   .timeline-text { max-width: 700px; }
