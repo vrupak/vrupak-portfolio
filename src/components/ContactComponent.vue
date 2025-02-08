@@ -59,41 +59,74 @@
       </section>
     </article>
 </template>
-  
+
 <script>
-  export default {
-    name: 'ContactComponent',
-    data() {
-      return {
-        formData: {
-          fullname: '',
-          email: '',
-          message: ''
+export default {
+  name: 'ContactComponent',
+  data() {
+    return {
+      formData: {
+        fullname: '',
+        email: '',
+        message: ''
+      },
+      isSubmitting: false,
+      submitError: null
+    }
+  },
+  computed: {
+    isFormValid() {
+      return this.formData.fullname && 
+             this.formData.email && 
+             this.formData.message &&
+             !this.isSubmitting
+    }
+  },
+  methods: {
+    async submitForm() {
+      if (!this.isFormValid) return;
+
+      this.isSubmitting = true;
+      this.submitError = null;
+
+      try {
+        // In development
+        const baseUrl = process.env.NODE_ENV === 'development' 
+          ? 'http://localhost:3000' 
+          : '';
+        
+        const response = await fetch(`${baseUrl}/api/contact`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.formData)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to send message');
         }
-      }
-    },
-    computed: {
-      isFormValid() {
-        return this.formData.fullname && 
-               this.formData.email && 
-               this.formData.message
-      }
-    },
-    methods: {
-      submitForm() {
-        // Handle form submission
-        console.log('Form submitted:', this.formData)
-        // Reset form after submission
+
+        // Reset form on success
         this.formData = {
           fullname: '',
           email: '',
           message: ''
-        }
-        // You can add your form submission logic here
-        // like making an API call to your backend
+        };
+
+        alert('Message sent successfully!');
+      } catch (error) {
+        console.error('Error:', error);
+        this.submitError = error.message;
+        alert(error.message || 'Failed to send message. Please try again.');
+      } finally {
+        this.isSubmitting = false;
       }
     }
   }
+}
 </script>
   
 <style scoped>
