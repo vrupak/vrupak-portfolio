@@ -6,7 +6,7 @@
   
       <section class="about-text">
         <p>
-          I'm a Software Engineer from Tempe, Arizona, specializing in web development and modern technologies.
+          I'm a Software Engineer Graduate from Arizona State University, specializing in web development and modern technologies.
           I enjoy turning complex problems into simple, beautiful and intuitive solutions.
         </p>
   
