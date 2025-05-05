@@ -5,7 +5,6 @@
     </header>
 
     <section class="projects">
-      <!-- Rest of the filter UI remains the same -->
       <ul class="filter-list">
         <li v-for="category in categories" :key="category" class="filter-item">
           <button 
@@ -38,121 +37,153 @@
           :key="project.id" 
           class="project-item"
           :class="{ active: isProjectVisible(project) }"
-          :data-filter-item="true"
-          :data-category="project.category"
+          @click="openModal(project)"
         >
-          <a :href="project.link" target="_blank">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-              <img 
-                :src="getImageUrl(project.image)" 
-                :alt="project.title"
-                loading="lazy"
-              >
-            </figure>
-
-            <h3 class="project-title">{{ project.title }}</h3>
-            <p class="project-category">{{ project.category }}</p>
-          </a>
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+            <img 
+              :src="getImageUrl(project.image)" 
+              :alt="project.title"
+              loading="lazy"
+            >
+          </figure>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-category">{{ project.category }}</p>
         </li>
       </ul>
     </section>
+
+    <!-- Modal -->
+    <div v-if="selectedProject" class="modal-overlay" @click.self="closeModal">
+      <div class="modal-content">
+        <img :src="getImageUrl(selectedProject.image)" alt="Project Image" />
+        <h2>{{ selectedProject.title }}</h2>
+        <p>{{ selectedProject.description }}</p>
+        <div class="modal-footer">
+          <button class="close-btn" @click="closeModal">Close</button>
+          <a :href="selectedProject.link" target="_blank">Visit Project</a>
+        </div>
+      </div>
+    </div>
   </article>
 </template>
 
 <script>
 export default {
-name: 'PortfolioComponent',
-data() {
-  return {
-    selectedCategory: 'All',
-    isSelectOpen: false,
-    categories: ['All', 'Web Development', 'Games', 'Web Design'],
-    projects: [
-    {
-        id: 1,
-        title: 'CAssess V3',
-        category: 'Web Development',
-        link: 'https://heal2.poly.asu.edu/cassess/#/about',
-        image: 'CAssess.png'
-      },
-      {
-        id: 2,
-        title: '2D/3D Rendering in the Web',
-        category: 'Web Development',
-        link: 'https://ser-421.vercel.app/threejs',
-        image: 'RenderingInWeb.png'
-      },
-      {
-        id: 3,
-        title: 'Agile/Lean Metrics Calculator',
-        category: 'Web Development',
-        link: 'https://github.com/SER516-Clever/SER516-Team-Clever',
-        image: 'Agile-Lean-Metrics.png'
-      },
-      {
-        id: 4,
-        title: 'Forbidden Vault',
-        category: 'Games',
-        link: 'https://github.com/Kushagra1480/SER594_ForbiddenVaults',
-        image: 'FVault2.png'
-      },
-      {
-        id: 5,
-        title: 'ST Runner',
-        category: 'Games',
-        link: '#',
-        image: 'Runner.png' 
-      },
-      {
-        id: 6,
-        title: 'ST Room VR',
-        category: 'Games',
-        link: '#',
-        image: 'RoomVR.png'
-      },
-      {
-        id: 7,
-        title: 'Fragrance.net Redesign',
-        category: 'Web Design',
-        link: 'https://github.com/vrupak/Usability-Enhancement-Project-Fragrance.net-Redesign',
-        image: 'Fragrance.png'
+  name: 'PortfolioComponent',
+  data() {
+    return {
+      selectedCategory: 'All',
+      isSelectOpen: false,
+      selectedProject: null,
+      categories: ['All', 'Web Development', 'Games', 'Web Design'],
+      projects: [
+        {
+          id: 1,
+          title: 'CAssess V3',
+          category: 'Web Development',
+          link: 'https://heal2.poly.asu.edu/cassess/#/about',
+          image: 'CAssess.png',
+          description: 'The CAssess platform is a comprehensive software application designed to facilitate the management and progress tracking of software projects within an academic environment. It serves as an interface for Professors, Instructors, TAs, and students engaged in these projects, leveraging three primary external tools: Slack, GitHub, and Taiga.'
+        },
+        {
+          id: 2,
+          title: '2D/3D Rendering in the Web',
+          category: 'Web Development',
+          link: 'https://ser-421.vercel.app/babylonjs',
+          image: 'RenderingInWeb.png',
+          description: 'Authored and implemented content on Babylon.js covering scene creation, materials, physics, animations, interactivity, 3D model importing, and particle systems. '
+        },
+        {
+          id: 3,
+          title: 'Agile/Lean Metrics Calculator',
+          category: 'Web Development',
+          link: 'https://github.com/SER516-Clever/SER516-Team-Clever',
+          image: 'Agile-Lean-Metrics.png',
+          description: 'Developed a comprehensive dashboard visualizing key Agile metrics (Burndown, Lead Time, Cycle Time) for Taiga projects. Built with React frontend and Spring Boot backend, evolved from monolithic to microservices architecture using Docker. Implemented CI/CD with GitHub Actions and applied evolving Agile methodologies from Scrum to Lean/Kanban to optimize development workflow.'
+        },
+        {
+          id: 4,
+          title: 'Forbidden Vault',
+          category: 'Games',
+          link: 'https://github.com/Kushagra1480/SER594_ForbiddenVaults',
+          image: 'FVault2.png',
+          description: 'Developed a single-player puzzle-adventure game using Unity3D, implementing core gameplay systems including inventory management, buff-debuff mechanics, and procedural dungeon generation. Created custom shaders for magical effects and integrated a modular puzzle system within a cohesive exploration framework. Leveraged C# scripting to build responsive player controls and event-driven interaction mechanics while optimizing performance for smooth gameplay across target platforms.'
+        },
+        {
+          id: 5,
+          title: 'ST Runner',
+          category: 'Games',
+          link: '#',
+          image: 'Runner.png',
+          description: 'Led Stranger Things-themed game development session for middle and high school students at SUCCESS summer camp. Created a customizable Unity 2.5D runner game template designed for beginners, enabling students with minimal programming experience to learn fundamental game development concepts through hands-on customization activities.'
+        },
+        {
+          id: 6,
+          title: 'ST Room VR',
+          category: 'Games',
+          link: '#',
+          image: 'RoomVR.png',
+          description: 'Led Stranger Things-themed VR development session for 6th-12th grade students at SUCCESS summer camp. Designed and created an interactive Meta Quest 2 VR experience featuring integrated simple tasks, enabling students to gain hands-on understanding of virtual reality technology through practical engagement.'
+        },
+        {
+          id: 7,
+          title: 'Fragrance.net Redesign',
+          category: 'Web Design',
+          link: 'https://github.com/vrupak/Usability-Enhancement-Project-Fragrance.net-Redesign',
+          image: 'Fragrance.png',
+          description: 'Conducted comprehensive usability analysis of fragrance.net, identifying key experience issues. Created an optimized prototype using Axure RP 10 that enhanced e-commerce functionality and improved overall design flow. Targeted two critical user tasks for enhancement and validated improvements through rigorous comparative usability testing against the original website.'
+        },
+        {
+          id: 8,
+          title: 'Camera Store E-Commerce Prototype',
+          category: 'Web Design',
+          link: 'https://d2ckn2.axshare.com/?g=4&id=04c1i2&p=homepage',
+          image: 'Camera-Store.png',
+          description: 'Developed a high-fidelity e-commerce prototype for a camera store using Axure RP, featuring an intuitive UI with responsive hover effects and structured information architecture. Implemented comprehensive shopping features including mega menu navigation, featured product displays, and category organization. Created interactive elements like promotional banners and newsletter signup to enhance user engagement. Design prioritizes conversion optimization while maintaining strong SEO foundations through strategic content placement and accessibility considerations.'
+        }
+      ]
+    }
+  },
+  computed: {
+    filteredProjects() {
+      if (this.selectedCategory === 'All') {
+        return this.projects;
       }
-    ]
-  }
-},
-computed: {
-  filteredProjects() {
-    if (this.selectedCategory === 'All') {
-      return this.projects
+      return this.projects.filter(project => project.category === this.selectedCategory);
     }
-    return this.projects.filter(project => project.category === this.selectedCategory)
-  }
-},
-methods: {
-  filterProjects(category) {
-    this.selectedCategory = category
-    this.isSelectOpen = false
   },
-  toggleSelect() {
-    this.isSelectOpen = !this.isSelectOpen
-  },
-  isProjectVisible(project) {
-    return this.selectedCategory === 'All' || project.category === this.selectedCategory
-  },
-  getImageUrl(imageName) {
-    try {
-      return require(`@/assets/portfolio/${imageName}`)
-    } catch (error) {
-      console.warn(`Image not found: ${imageName}`)
-      return require('@/assets/portfolio/RoomVR.png') // Fallback image
+  methods: {
+    filterProjects(category) {
+      this.selectedCategory = category;
+      this.isSelectOpen = false;
+    },
+    toggleSelect() {
+      this.isSelectOpen = !this.isSelectOpen;
+    },
+    isProjectVisible(project) {
+      return this.selectedCategory === 'All' || project.category === this.selectedCategory;
+    },
+    getImageUrl(imageName) {
+      try {
+        return require(`@/assets/portfolio/${imageName}`);
+      } catch (error) {
+        console.warn(`Image not found: ${imageName}`);
+        return require('@/assets/portfolio/RoomVR.png');
+      }
+    },
+    openModal(project) {
+      this.selectedProject = project;
+    },
+    closeModal() {
+      this.selectedProject = null;
     }
   }
-}
 }
 </script>
+
 <style scoped>
 .filter-list { 
   display: none; 
@@ -350,4 +381,72 @@ methods: {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--eerie-black-2);
+  padding: 20px;
+  border-radius: 14px;
+  max-width: 1000px;
+  width: 90%;
+  box-shadow: var(--shadow-4);
+  text-align: justify;
+}
+
+.modal-content img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.modal-content h2 {
+  color: var(--white-2);
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  color: var(--light-gray);
+  margin-bottom: 16px;
+}
+
+.modal-content a {
+  color: var(--sky-cyan);
+  font-weight: var(--fw-500);
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.close-btn {
+  background: var(--sky-cyan);
+  color: var(--smoky-black);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: var(--fw-500);
+  cursor: pointer;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.modal-footer a {
+  margin-left: auto;
+}
+
 </style>
