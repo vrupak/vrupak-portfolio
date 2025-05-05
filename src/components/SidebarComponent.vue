@@ -27,7 +27,7 @@
           </div>
           <div class="contact-info">
             <p class="contact-title">Email</p>
-            <a href="mailto:vrupak@asu.edu" class="contact-link">vrupak@asu.edu</a>
+            <a href="mailto:vidyarupak@gmail.com" class="contact-link">vidyarupak@gmail.com</a>
           </div>
         </li>
 

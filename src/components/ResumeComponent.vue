@@ -1,13 +1,12 @@
 <template>
   <article class="resume" data-page="resume">
     <header class="resume-header">
-      <h2 class="h2 article-title">
+      <h2 class="h2 article-title resume-title">
         Resume
-        <ion-icon 
-          name="download-outline" 
-          class="download-icon" 
-          @click="downloadResume"
-        ></ion-icon>
+        <a :href="resumeUrl" target="_blank" class="resume-link">
+          <ion-icon name="download-outline"></ion-icon>
+          <span>(Click to View)</span>
+        </a>
       </h2>
     </header>
 
@@ -79,7 +78,7 @@ export default {
   },
   data() {
     return {
-      resumeUrl: 'https://www.dropbox.com/scl/fi/whb2tb916cvomway26jxw/Vidya_Rupak_RESUME_Sem4.pdf?rlkey=2iulgkvu4e6uyuspc4etkuswz&st=925o3g1l&dl=0',
+      resumeUrl: 'https://www.dropbox.com/scl/fi/dn7ehwek0duvi4ornm9gm/VR_Resume_FE-FS.pdf?rlkey=kvy782a5rht5gerxos4ui1936&st=h5guqasv&dl=0',
       education: [
         {
           school: 'Arizona State University, USA',
@@ -268,4 +267,29 @@ export default {
 @media (min-width: 768px) {
   .timeline-text { max-width: 700px; }
 }
+
+.resume-title {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.resume-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--fs-6);
+  color: var(--white-1);
+  transition: color 0.3s ease;
+  padding-bottom: 6px;
+}
+
+.resume-link:hover {
+  color: var(--deep-cyan);
+}
+
+.resume-link ion-icon {
+  font-size: 1.5em;
+}
+
 </style>
