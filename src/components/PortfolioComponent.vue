@@ -71,47 +71,54 @@ data() {
     isSelectOpen: false,
     categories: ['All', 'Web Development', 'Games', 'Web Design'],
     projects: [
-      {
+    {
         id: 1,
-        title: '2D/3D Rendering in the Web',
+        title: 'CAssess V3',
         category: 'Web Development',
-        link: 'https://ser-421.vercel.app/threejs',
-        image: 'RenderingInWeb.png'  // Update with actual image name
+        link: 'https://heal2.poly.asu.edu/cassess/#/about',
+        image: 'CAssess.png'
       },
       {
         id: 2,
-        title: 'Agile/Lean Metrics Calculator',
+        title: '2D/3D Rendering in the Web',
         category: 'Web Development',
-        link: 'https://github.com/SER516-Clever/SER516-Team-Clever',
-        image: 'RoomVR.png'  // Update with actual image name
+        link: 'https://ser-421.vercel.app/threejs',
+        image: 'RenderingInWeb.png'
       },
       {
         id: 3,
-        title: 'Forbidden Vault',
-        category: 'Games',
-        link: 'https://github.com/Kushagra1480/SER594_ForbiddenVaults',
-        image: 'FVault2.png'  // Update with actual image name
+        title: 'Agile/Lean Metrics Calculator',
+        category: 'Web Development',
+        link: 'https://github.com/SER516-Clever/SER516-Team-Clever',
+        image: 'Agile-Lean-Metrics.png'
       },
       {
         id: 4,
-        title: 'ST Runner',
+        title: 'Forbidden Vault',
         category: 'Games',
-        link: '#',
-        image: 'Runner.png'  // Update with actual image name
+        link: 'https://github.com/Kushagra1480/SER594_ForbiddenVaults',
+        image: 'FVault2.png'
       },
       {
         id: 5,
+        title: 'ST Runner',
+        category: 'Games',
+        link: '#',
+        image: 'Runner.png' 
+      },
+      {
+        id: 6,
         title: 'ST Room VR',
         category: 'Games',
         link: '#',
         image: 'RoomVR.png'
       },
       {
-        id: 6,
+        id: 7,
         title: 'Fragrance.net Redesign',
         category: 'Web Design',
         link: 'https://github.com/vrupak/Usability-Enhancement-Project-Fragrance.net-Redesign',
-        image: 'Fragrance.png'  // Update with actual image name
+        image: 'Fragrance.png'
       }
     ]
   }
