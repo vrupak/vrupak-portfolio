@@ -1,7 +1,10 @@
 <template>
   <article class="hobbies" data-page="hobbies">
     <header>
-      <h2 class="h2 article-title">My Artwork</h2>
+      <h2 class="h2 article-title">My Hobbies</h2>
+      <p class="hobbies-description">
+        Outside of work, I am passionate about both creative expression and maintaining an active lifestyle. Since 2018, I have practiced stipple sketching—a unique technique of creating intricate designs by placing thousands of tiny dots. My artwork primarily explores abstract concepts, darker themes, and elements of nature, and has been a deeply personal outlet for creativity and focus.
+      </p>
     </header>
 
     <div class="gallery">
@@ -34,6 +37,16 @@
         <span class="close-button" @click="closeModal">✕</span>
       </div>
     </transition>
+
+    <header>
+      <p class="hobbies-description">
+        I also enjoy staying physically active, particularly through weightlifting, which has positively shaped my mindset and contributed to my mental and physical well-being. While I now play table tennis more casually, I used to be more active and still enjoy an occasional match.<br><br>
+
+        As a gamer, I have a strong interest in action RPGs with Path of Exile being a personal favorite, and also roguelikes. Gaming serves as a fun escape and a way to unwind. I also find balance outdoors by going on monthly hikes and occasionally trying bouldering for a different physical challenge.<br><br>
+
+        Music is another constant in my life—I listen to a diverse range including nu-metal, rock, drum and bass, EDM, and more mellow tracks depending on my mood.
+      </p>
+    </header>
   </article>
 </template>
 
@@ -59,7 +72,6 @@ const images = [
   '/artworks/idea.jpg',
   '/artworks/night.jpg',
   '/artworks/paw.jpg',
-  '/artworks/read.jpg',
   '/artworks/abstract.jpg',
 ]
 
@@ -184,11 +196,18 @@ const endMouse = (e) => {
   cursor: pointer;
 }
 
-/* fade animation */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.3s ease;
 }
+
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
+}
+
+.hobbies-description {
+  color: var(--white-2);
+  font-size: var(--fs-6);
+  line-height: 1.6;
+  margin-top: 15px;
 }
 </style>

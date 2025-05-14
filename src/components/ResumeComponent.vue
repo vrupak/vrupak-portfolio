@@ -82,13 +82,13 @@ export default {
       education: [
         {
           school: 'Arizona State University, USA',
-          period: '08/2023 — Present',
+          period: '08/2023 — 05/2025',
           description: 'Master of Science in Software Engineering.',
           gpa: '4.00'
         },
         {
           school: 'Manipal University Jaipur, India',
-          period: '2018 — 2022',
+          period: '07/2018 — 05/2022',
           description: 'Bachelor of Technology in Computer Science Engineering.',
           gpa: '3.45'
         }
@@ -96,7 +96,7 @@ export default {
       experience: [
         {
           role: 'Software Engineer - HEAL Lab, ASU',
-          period: '07/2024 — Present',
+          period: '07/2024 — 05/2025',
           description: 'Integrated GIFT with a Unity VR training app, improved scalability with RAW sockets and Kafka, refactored legacy code following SOLID principles, and developed a mock Unity scene for course integration and control.'
         },
         {
