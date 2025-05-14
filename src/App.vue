@@ -11,6 +11,7 @@
           <ResumeComponent v-if="currentPage === 'resume'" />
           <PortfolioComponent v-if="currentPage === 'portfolio'" />
           <ContactComponent v-if="currentPage === 'contact'" />
+          <HobbiesComponent v-if="currentPage === 'hobbies'" />
         </div>
       </div>
     </div>
@@ -24,6 +25,7 @@ import AboutComponent from './components/AboutComponent.vue'
 import ResumeComponent from './components/ResumeComponent.vue'
 import PortfolioComponent from './components/PortfolioComponent.vue'
 import ContactComponent from './components/ContactComponent.vue'
+import HobbiesComponent from './components/HobbiesComponent.vue'
 
 export default {
   name: 'App',
@@ -33,7 +35,8 @@ export default {
     AboutComponent,
     ResumeComponent,
     PortfolioComponent,
-    ContactComponent
+    ContactComponent,
+    HobbiesComponent
   },
   data() {
     return {
