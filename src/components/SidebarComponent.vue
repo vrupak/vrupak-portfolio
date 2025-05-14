@@ -316,7 +316,7 @@ export default {
 }
 
 /* Desktop Styles */
-@media (min-width: 1024px) {
+@media (min-width: 1220px) {
   .sidebar {
     position: sticky;
     top: 60px;

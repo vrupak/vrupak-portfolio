@@ -91,7 +91,7 @@ main {
 }
 
 /* Media queries */
-@media (min-width: 1024px) {
+@media (min-width: 1220px) {
   .container {
     flex-direction: row;
     align-items: flex-start;

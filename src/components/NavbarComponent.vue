@@ -108,7 +108,7 @@
     }
   }
   
-  @media (min-width: 1024px) {
+  @media (min-width: 1220px) {
     .navbar {
       position: absolute;
       bottom: auto;

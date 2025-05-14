@@ -35,8 +35,8 @@
 
         <header>
             <p class="hobbies-description">
-                I also enjoy staying physically active, particularly through weightlifting, which has positively shaped my mindset and contributed to my mental and physical well-being. While I now play table tennis more casually, I used to be more active and still enjoy an occasional match.<br><br>
-                As a gamer, I have a strong interest in action RPGs and roguelikes, with <em>Path of Exile</em> being a personal favorite. Gaming serves as a fun escape and a way to unwind. I also find balance outdoors by going on monthly hikes and occasionally trying bouldering for a different physical challenge.<br><br>
+                I also enjoy staying physically active, particularly through weightlifting. While I now play table tennis and football(soccer) more casually, I used to be more active and still enjoy an occasional match.<br><br>
+                I also have a strong interest in action RPGs and roguelikes, with <em>Path of Exile</em> being a personal favorite. Gaming serves as a fun escape and a way to unwind. I also find balance outdoors by going on monthly hikes and occasionally trying bouldering for a different physical challenge.<br><br>
                 Music is another constant in my life—I listen to a diverse range including nu metal, rock, drum and bass, EDM, and more mellow tracks depending on my mood.
             </p>
         </header>
@@ -223,9 +223,10 @@ const endMouse = (e) => {
 }
 
 .hobbies-description {
-    color: var(--white-2);
+    margin-top: 40px;
+    color: var(--light-gray);
     font-size: var(--fs-6);
+    font-weight: var(--fw-300);
     line-height: 1.6;
-    margin-top: 15px;
 }
 </style>

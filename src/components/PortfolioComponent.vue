@@ -384,7 +384,7 @@ export default {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1220px) {
   .project-list {
     grid-template-columns: repeat(3, 1fr);
   }
