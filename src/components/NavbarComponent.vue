@@ -24,8 +24,8 @@
           { name: 'about', label: 'About' },
           { name: 'resume', label: 'Resume' },
           { name: 'portfolio', label: 'Portfolio' },
-          { name: 'contact', label: 'Contact' },
-          { name: 'hobbies', label: 'Hobbies'}
+          { name: 'hobbies', label: 'Hobbies'},
+          { name: 'contact', label: 'Contact' }
         ]
       }
     },
