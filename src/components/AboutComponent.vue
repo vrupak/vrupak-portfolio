@@ -1,253 +1,202 @@
 <template>
-    <article class="about active" data-page="about">
-      <header>
-        <h2 class="h2 article-title">About me</h2>
-      </header>
-  
-      <section class="about-text">
-        <p>
-          I'm a Software Engineer Graduate from Arizona State University, specializing in web development and modern technologies.
-          I enjoy turning complex problems into simple, beautiful and intuitive solutions.
-        </p>
-  
-        <p>
-          My expertise lies in building scalable and efficient web applications that are both functional and user-friendly.
-          I focus on writing clean, maintainable code while ensuring optimal performance and accessibility.
-          I stay current with the latest technologies and best practices in software development.
-        </p>
+  <article class="about active" data-page="about">
+    <header>
+      <h2 class="h2 article-title">About me</h2>
+    </header>
 
-        <p>
-          Outside of work, I am passionate about creative pursuits like stipple sketching and staying active through gym workouts, table tennis, and gaming.
-        </p>
-      </section>
-  
-      <section class="service">
-        <h3 class="h3 service-title">What I'm doing</h3>
-  
-        <ul class="service-list">
-          <li v-for="(service, index) in services" :key="index" class="service-item">
-            <div class="service-icon-box">
-              <img :src="service.icon" :alt="service.title" width="40">
-            </div>
-  
-            <div class="service-content-box">
-              <h4 class="h4 service-item-title">{{ service.title }}</h4>
-              <p class="service-item-text">{{ service.description }}</p>
-            </div>
-          </li>
-        </ul>
-      </section>
-  
-      <!-- <section class="testimonials">
-        <h3 class="h3 testimonials-title">Testimonials</h3>
-  
-        <ul class="testimonials-list has-scrollbar">
-          <li v-for="testimonial in testimonials" :key="testimonial.id" class="testimonials-item">
-            <div class="content-card" @click="showTestimonialModal(testimonial)">
-              <figure class="testimonials-avatar-box">
-                <img :src="testimonial.avatar" :alt="testimonial.name" width="60">
-              </figure>
-  
-              <h4 class="h4 testimonials-item-title">{{ testimonial.name }}</h4>
-  
-              <div class="testimonials-text">
-                <p>{{ testimonial.text }}</p>
+    <section class="about-text">
+      <p>
+        I'm a Software Engineer Graduate from Arizona State University, specializing in web development and modern technologies.
+        I enjoy turning complex problems into simple, beautiful and intuitive solutions.
+      </p>
+      <p>
+        My expertise lies in building scalable and efficient web applications that are both functional and user-friendly.
+        I focus on writing clean, maintainable code while ensuring optimal performance and accessibility.
+        I stay current with the latest technologies and best practices in software development.
+      </p>
+      <p>
+        Outside of work, I am passionate about creative pursuits like stipple sketching and staying active through gym workouts, table tennis, and gaming.
+      </p>
+    </section>
+
+    <section class="service">
+      <h3 class="h3 service-title">What I'm doing</h3>
+      <ul class="service-list">
+        <li v-for="(service, index) in services" :key="index" class="service-item">
+          <div class="service-icon-box">
+            <img :src="service.icon" :alt="service.title" width="40">
+          </div>
+          <div class="service-content-box">
+            <h4 class="h4 service-item-title">{{ service.title }}</h4>
+            <p class="service-item-text">{{ service.description }}</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="testimonials">
+      <h3 class="h3 testimonials-title">Testimonials</h3>
+      <ul class="testimonials-list has-scrollbar">
+        <li v-for="testimonial in testimonials" :key="testimonial.id" class="testimonials-item">
+          <div class="content-card">
+            <div class="testimonial-header">
+              <img :src="testimonial.avatar" :alt="testimonial.name" class="testimonial-avatar">
+              <div class="testimonial-info">
+                <h4 class="h4 testimonial-name">{{ testimonial.name }}</h4>
+                <span class="testimonial-company">{{ testimonial.company }}</span>
+                <span class="testimonial-date">{{ testimonial.date }}</span>
               </div>
             </div>
-          </li>
-        </ul>
-      </section>
-  
-      <div class="modal-container" :class="{ active: isModalActive }">
-        <div class="overlay" @click="closeModal"></div>
-        <section class="testimonials-modal">
-          <button class="modal-close-btn" @click="closeModal">
-            <ion-icon name="close-outline"></ion-icon>
-          </button>
-  
-          <div class="modal-img-wrapper">
-            <figure class="modal-avatar-box">
-              <img :src="currentTestimonial?.avatar" :alt="currentTestimonial?.name" width="80">
-            </figure>
-            <img src="@/assets/logo.png" alt="quote icon">
-          </div>
-  
-          <div class="modal-content">
-            <h4 class="h3 modal-title">{{ currentTestimonial?.name }}</h4>
-            <time datetime="2021-06-14">{{ currentTestimonial?.date }}</time>
-            <div>
-              <p>{{ currentTestimonial?.text }}</p>
+            <div class="testimonials-text" :class="{ expanded: testimonial.isExpanded }">
+              <p>{{ testimonial.text }}</p>
             </div>
+            <button class="expand-btn" @click="testimonial.isExpanded = !testimonial.isExpanded">
+              <ion-icon :name="testimonial.isExpanded ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+            </button>
           </div>
-        </section>
-      </div> -->
-    </article>
-  </template>
-  
-  <script>
-  export default {
-    name: 'AboutComponent',
-    data() {
-      return {
-        isModalActive: false,
-        currentTestimonial: null,
-        services: [
-          {
-            title: 'Web Development',
-            description: 'Dynamic, user-focused web applications using Vue.js, React, Spring Boot, and Node.js.',
-            icon: require('@/assets/web-development.png')
-          },
-          {
-            title: 'Game Development',
-            description: '2D, 3D and VR games in Unity.',
-            icon: require('@/assets/game-development.png')
-          },
-          {
-            title: 'Web Design',
-            description: 'Interactive prototypes using Axure RP 10 to enhance user experience and address usability issues.',
-            icon: require('@/assets/web-design.png')
-          },
-          {
-            title: 'API Development',
-            description: 'Scalable RESTful APIs with Spring Boot, following best practices for maintainability.',
-            icon: require('@/assets/api.png')
-          }
-        ],
-        // testimonials: [
-        //   {
-        //     id: 1,
-        //     name: 'Daniel Lewis',
-        //     avatar: require('@/assets/logo.png'),
-        //     text: 'Vidya was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client.',
-        //     date: '14 June, 2023'
-        //   },
-        //   // Add more testimonials as needed
-        // ]
-      }
-    },
-    methods: {
-      showTestimonialModal(testimonial) {
-        this.currentTestimonial = testimonial
-        this.isModalActive = true
-        document.body.style.overflow = 'hidden'
-      },
-      closeModal() {
-        this.isModalActive = false
-        this.currentTestimonial = null
-        document.body.style.overflow = 'auto'
-      }
+        </li>
+      </ul>
+    </section>
+  </article>
+</template>
+
+<script>
+export default {
+  name: 'AboutComponent',
+  data() {
+    return {
+      services: [
+        { title: 'Web Development', description: 'Dynamic, user-focused web applications using Vue.js, React, Spring Boot, and Node.js.', icon: require('@/assets/web-development.png') },
+        { title: 'Game Development', description: '2D, 3D and VR games in Unity.', icon: require('@/assets/game-development.png') },
+        { title: 'Web Design', description: 'Interactive prototypes using Axure RP 10 to enhance user experience and address usability issues.', icon: require('@/assets/web-design.png') },
+        { title: 'API Development', description: 'Scalable RESTful APIs with Spring Boot, following best practices for maintainability.', icon: require('@/assets/api.png') }
+      ],
+      testimonials: [
+        {
+          id: 1,
+          name: 'Dr. Kevin Gary',
+          avatar: require('@/assets/kgary.png'),
+          company: 'Arizona State University',
+          text: 'Vidya distinguishes himself as a self-starter. I recruited him to my lab when I noticed his outstanding academic performance. But grades in a classroom are just one measure of potential, so I was not sure how it would go. It could not have gone better. Vidya jumped right in on our development for the SUCCESS summer camp, leading efforts in VR and gaming. So I then recruited him for my EdTech grant, and again he has been outstanding over the past year. Working on a large-scale integration project involving a plethora of technologies - Unity, VR, C#, Python, Java, activeMQ, Kafka and more, Vidya has excelled at providing innovative solutions while interfacing with multiple collaborators. He has been unique in this capacity and I will miss him in my lab. I enthusiastically recommend him to any professional opportunities to which he is applying.',
+          date: '30 April, 2025',
+          isExpanded: false
+        }
+      ]
     }
   }
-  </script>
-  
-  <style scoped>
-  .about .article-title { margin-bottom: 15px; }
-  
-  .about-text {
-    color: var(--light-gray);
-    font-size: var(--fs-6);
-    font-weight: var(--fw-300);
-    line-height: 1.6;
-  }
-  
-  .about-text p { margin-bottom: 15px; }
-  
-  /* Service styles */
-  .service { margin-bottom: 35px; }
-  
-  .service-title { margin-bottom: 20px; }
-  
-  .service-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
+}
+</script>
+
+<style scoped>
+.about-text {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+}
+.about-text p { margin-bottom: 15px; }
+
+.service { margin-bottom: 35px; }
+.service-title { margin-bottom: 20px; }
+.service-list { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.service-item {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-2);
+  transition: transform 0.2s ease;
+}
+.service-item:hover { transform: translateY(-5px); }
+.service-item::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+.service-icon-box img { margin: auto; }
+.service-content-box { text-align: center; }
+.service-item-title { margin-bottom: 7px; }
+.service-item-text {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  line-height: 1.6;
+}
+
+.testimonials-list { display: flex; flex-direction: column; gap: 15px; margin-top: 20px;}
+.testimonials-item .content-card {
+  background: var(--eerie-black-2);
+  border: 1px solid var(--jet);
+  border-radius: 16px;
+  box-shadow: var(--shadow-2);
+  padding: 18px;
+  position: relative;
+  transition: transform 0.25s ease;
+}
+.testimonials-item .content-card:hover { transform: scale(1.02); }
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--sky-cyan);
+}
+.testimonial-info { display: flex; flex-direction: column; }
+.testimonial-name {
+  font-size: var(--fs-5);
+  font-weight: var(--fw-500);
+  color: var(--white-2);
+}
+.testimonial-company {
+  font-size: var(--fs-7);
+  color: var(--sky-cyan);
+}
+.testimonial-date {
+  font-size: var(--fs-7);
+  color: var(--light-gray-70);
+}
+.testimonials-text p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  line-height: 1.5;
+  -webkit-line-clamp: 3;
+}
+.testimonials-text.expanded p {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+.expand-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  color: var(--sky-cyan);
+  cursor: pointer;
+  font-size: 35px;
+}
+
+/* Responsive for services */
+@media (min-width: 580px) {
   .service-item {
-    position: relative;
-    background: var(--border-gradient-onyx);
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: var(--shadow-2);
-    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 30px;
   }
-  
-  .service-item::before {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    background: var(--bg-gradient-jet);
-    border-radius: inherit;
-    z-index: -1;
-  }
-  
-  .service-icon-box {
-    margin-bottom: 10px;
-  }
-  
-  .service-icon-box img { margin: auto; }
-  
-  .service-content-box { text-align: center; }
-  
-  .service-item-title { margin-bottom: 7px; }
-  
-  .service-item-text {
-    color: var(--light-gray);
-    font-size: var(--fs-6);
-    font-weight: var(--fw-3);
-    line-height: 1.6;
-  }
-  
-  /* Testimonials styles */
-  .testimonials-modal {
-    position: relative;
-    background: var(--eerie-black-2);
-    padding: 15px;
-    margin: 15px;
-    border: 1px solid var(--jet);
-    border-radius: 14px;
-    box-shadow: var(--shadow-5);
-    transform: scale(1.2);
-    opacity: 0;
-    transition: var(--transition-1);
-    z-index: 2;
-  }
-  
-  .modal-container.active .testimonials-modal {
-    transform: scale(1);
-    opacity: 1;
-  }
-  
-  @media (min-width: 580px) {
-    .service-item {
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      gap: 18px;
-      padding: 30px;
-    }
-  
-    .service-icon-box {
-      margin-bottom: 0;
-      margin-top: 5px;
-    }
-  
-    .service-content-box { text-align: left; }
-  
-    .testimonials-modal {
-      display: flex;
-      justify-content: flex-start;
-      align-items: stretch;
-      gap: 25px;
-      padding: 30px;
-      border-radius: 20px;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .testimonials-modal {
-      gap: 35px;
-      max-width: 680px;
-    }
-  }
-  </style>
+  .service-content-box { text-align: left; }
+}
+</style>
