@@ -12,7 +12,6 @@
         <p class="name">{{ data.name }} ({{ data.username }})</p>
       </div>
 
-      <!-- ✅ Heatmap -->
       <div class="heatmap">
         <div
           v-for="(day, index) in data.heatmapData"
@@ -34,7 +33,7 @@ const error = ref(null)
 
 onMounted(async () => {
   try {
-    const response = await fetch('/api/github-contributions?username=vrupak')
+    const response = await fetch('/api/github-contributions')
     if (!response.ok) throw new Error('API failed')
     data.value = await response.json()
   } catch (e) {
@@ -50,7 +49,7 @@ function getColor(count) {
   if (count < 2) return '#004455'
   if (count < 5) return '#006688'
   if (count < 10) return '#0099cc'
-  return '#00ccff' // brightest cyan
+  return '#00ccff'
 }
 </script>
 
@@ -88,6 +87,13 @@ function getColor(count) {
 .heatmap {
   display: grid;
   grid-template-columns: repeat(53, 8px);
-  grid-template-rows: repeat
+  grid-template-rows: repeat(7, 8px);
+  gap: 2px;
+  margin-top: 10px;
+}
+.heatmap-cell {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
 }
 </style>

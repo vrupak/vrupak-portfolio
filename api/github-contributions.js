@@ -1,16 +1,16 @@
 module.exports = async function (req, res) {
-  const { username } = req.query;
   const token = process.env.GITHUB_TOKEN;
 
   if (!token) return res.status(500).json({ error: "GITHUB_TOKEN not set." });
-  if (!username) return res.status(400).json({ error: "username param missing." });
 
   try {
+    // 1. Get profile info with octokit
     const { Octokit } = await import("@octokit/rest");
     const octokit = new Octokit({ auth: token });
+    const viewer = await octokit.rest.users.getAuthenticated();
+    const user = viewer.data;
 
-    const user = (await octokit.rest.users.getByUsername({ username })).data;
-
+    // 2. Get contribution heatmap with graphql-request
     const { GraphQLClient, gql } = await import("graphql-request");
     const graphQLClient = new GraphQLClient("https://api.github.com/graphql", {
       headers: { Authorization: `Bearer ${token}` },
