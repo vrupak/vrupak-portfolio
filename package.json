@@ -8,9 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@octokit/graphql": "^8.2.2",
     "apexcharts": "^4.7.0",
     "core-js": "^3.8.3",
+    "graphql-request": "^7.1.2",
     "swiper": "^11.2.6",
     "vue": "^3.2.13",
     "vue-charts": "^0.2.1",

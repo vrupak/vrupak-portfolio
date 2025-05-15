@@ -1,11 +1,11 @@
-import { graphql } from "@octokit/graphql";
+// api/github-contributions.js
+import { GraphQLClient, gql } from "graphql-request";
 
 export default async function handler(req, res) {
   const { username } = req.query;
   const token = process.env.GITHUB_TOKEN;
 
   if (!token) {
-    console.error("GITHUB_TOKEN not found in environment variables.");
     return res.status(500).json({ error: "GITHUB_TOKEN not set." });
   }
 
@@ -16,23 +16,24 @@ export default async function handler(req, res) {
   console.log(`👉 Requested GitHub contributions for username: ${username}`);
 
   try {
-    const graphqlWithAuth = graphql.defaults({
+    const client = new GraphQLClient("https://api.github.com/graphql", {
       headers: {
-        authorization: `token ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
-    // 👇 First get the viewer login to know which account the token belongs to
-    const viewerData = await graphqlWithAuth(`
+    // Get token owner
+    const viewer = await client.request(gql`
       query {
         viewer {
           login
         }
       }
     `);
-    console.log(`👉 Token belongs to GitHub user: ${viewerData.viewer.login}`);
+    console.log(`👉 Token belongs to GitHub user: ${viewer.viewer.login}`);
 
-    const result = await graphqlWithAuth(`
+    // Get contributions
+    const data = await client.request(gql`
       query ($username: String!) {
         user(login: $username) {
           contributionCalendar {
@@ -48,14 +49,14 @@ export default async function handler(req, res) {
       }
     `, { username });
 
-    const contributions = result.user?.contributionCalendar?.totalContributions ?? 0;
+    const contributions = data.user?.contributionCalendar?.totalContributions ?? 0;
     console.log(`👉 Total contributions returned: ${contributions}`);
 
-    if (!result.user || contributions === 0) {
+    if (!data.user || contributions === 0) {
       console.warn("⚠️ User not found or zero contributions returned.");
     }
 
-    return res.status(200).json(result.user ?? { error: "No data found" });
+    return res.status(200).json(data.user ?? { error: "No data found" });
   } catch (error) {
     console.error("❌ GitHub API error:", error);
     return res.status(500).json({ error: "GitHub API error", details: error.message });
