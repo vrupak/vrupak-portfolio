@@ -15,7 +15,7 @@
           <span
             v-for="label in monthLabels"
             :key="label.index"
-            :style="{ gridColumnStart: label.index + 2 }"
+            :style="{ gridColumnStart: label.index + 1 }"
           >{{ label.month }}</span>
         </div>
 
@@ -87,33 +87,33 @@ function organizeWeeks(days) {
   }
   weeks.value = grouped
 
+  // Generate month labels based on first appearance of each month
   const labels = []
-  const monthsSeen = new Set()
-  const today = new Date()
-  const startDate = new Date(today)
-  startDate.setDate(today.getDate() - 364) // start of graph
-
-  for (let m = 0; m < 12; m++) {
-    const labelDate = new Date(startDate.getFullYear(), startDate.getMonth() + m, 1)
-    if (labelDate > today) break
-    const labelMonth = labelDate.toLocaleString('default', { month: 'short' })
-
-    for (let weekIndex = 0; weekIndex < weeks.value.length; weekIndex++) {
-      const week = weeks.value[weekIndex]
-      if (week.contributionDays.some(day => {
-        const d = new Date(day.date)
-        return d.getFullYear() === labelDate.getFullYear() &&
-               d.getMonth() === labelDate.getMonth() &&
-               d.getDate() === 1
-      })) {
-        if (!monthsSeen.has(labelMonth)) {
-          labels.push({ index: weekIndex, month: labelMonth })
-          monthsSeen.add(labelMonth)
-        }
-        break
+  let previousMonth = null
+  
+  // Process each week to find where month changes occur
+  for (let weekIndex = 0; weekIndex < weeks.value.length; weekIndex++) {
+    const week = weeks.value[weekIndex]
+    
+    // Check each day in the week
+    for (let dayIndex = 0; dayIndex < week.contributionDays.length; dayIndex++) {
+      const day = week.contributionDays[dayIndex]
+      const date = new Date(day.date)
+      const currentMonth = date.getMonth()
+      
+      // If this is a new month we haven't seen before, or the first week
+      if (previousMonth === null || currentMonth !== previousMonth) {
+        const monthName = date.toLocaleString('default', { month: 'short' })
+        labels.push({ 
+          index: weekIndex + 1, // +1 because grid columns start at 1
+          month: monthName 
+        })
+        previousMonth = currentMonth
+        break // Only add one label per month
       }
     }
   }
+  
   monthLabels.value = labels
 }
 
@@ -161,9 +161,11 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
 .months {
   display: grid;
   grid-template-columns: repeat(53, 10px);
+  grid-column-gap: 2px;
   font-size: 10px;
   color: #ccc;
   margin-bottom: 4px;
+  text-align: start;
 }
 .heatmap-grid {
   display: flex;
@@ -171,20 +173,20 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
 .days {
   display: grid;
   grid-template-rows: repeat(7, 10px);
+  grid-row-gap: 2px;
   font-size: 10px;
   color: #ccc;
   margin-right: 5px;
   margin-bottom: 5px;
 }
 .heatmap {
-  display: grid;
-  grid-template-columns: repeat(53, 10px);
-  grid-template-rows: repeat(7, 10px);
+  display: flex;
   gap: 2px;
 }
 .week {
   display: grid;
   grid-template-rows: repeat(7, 10px);
+  grid-row-gap: 2px;
 }
 .heatmap-cell {
   width: 10px;
