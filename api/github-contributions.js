@@ -1,7 +1,6 @@
-// api/github-contributions.js
-import { GraphQLClient, gql } from "graphql-request";
+const { GraphQLClient, gql } = require("graphql-request");
 
-export default async function handler(req, res) {
+module.exports = async function (req, res) {
   const { username } = req.query;
   const token = process.env.GITHUB_TOKEN;
 
@@ -46,7 +45,6 @@ export default async function handler(req, res) {
             }
           }
         }
-      }
     `, { username });
 
     const contributions = data.user?.contributionCalendar?.totalContributions ?? 0;
