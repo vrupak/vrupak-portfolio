@@ -1,6 +1,3 @@
-// api/github-contributions.js
-const { Octokit } = require("@octokit/rest");
-
 module.exports = async function (req, res) {
   const { username } = req.query;
   const token = process.env.GITHUB_TOKEN;
@@ -16,6 +13,9 @@ module.exports = async function (req, res) {
   console.log(`👉 Requested GitHub contributions for username: ${username}`);
 
   try {
+    // ✅ Use dynamic import to avoid ESM require() error
+    const { Octokit } = await import("@octokit/rest");
+
     const octokit = new Octokit({ auth: token });
 
     // ✅ Get authenticated user (to confirm token account)
@@ -25,18 +25,18 @@ module.exports = async function (req, res) {
     // ✅ Get public user data
     const { data: user } = await octokit.rest.users.getByUsername({ username });
 
-    // ✅ Get public events (last 30 days)
+    // ✅ Get public events (last 100 activities)
     const { data: events } = await octokit.rest.activity.listPublicEventsForUser({
       username,
       per_page: 100,
     });
 
     // ✅ Calculate contribution-like activity (push events = commits)
-    const contributions = events.filter(e => e.type === "PushEvent").reduce((sum, e) => {
-      return sum + e.payload.commits.length;
-    }, 0);
+    const contributions = events
+      .filter(e => e.type === "PushEvent")
+      .reduce((sum, e) => sum + e.payload.commits.length, 0);
 
-    console.log(`👉 Total contributions (PushEvents) last 100 events: ${contributions}`);
+    console.log(`👉 Total contributions (PushEvents): ${contributions}`);
 
     res.status(200).json({
       username: user.login,
@@ -45,7 +45,7 @@ module.exports = async function (req, res) {
       public_repos: user.public_repos,
       followers: user.followers,
       following: user.following,
-      contributionsEstimate: contributions, // last 100 events estimate
+      contributionsEstimate: contributions,
     });
   } catch (error) {
     console.error("❌ GitHub API error:", error);
