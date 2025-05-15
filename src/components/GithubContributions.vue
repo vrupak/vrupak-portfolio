@@ -4,36 +4,44 @@
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
-      <p class="total">{{ data.totalContributions }} contributions in the last year</p>
-
-      <div class="user-info">
+      <div class="header">
         <img :src="data.avatar_url" alt="Avatar" />
-        <p class="name">{{ data.name }} ({{ data.username }})</p>
+        <p class="total">{{ data.totalContributions }} contributions in the last year</p>
       </div>
 
-      <!-- Month Labels -->
       <div class="heatmap-wrapper fade-in">
+        <!-- Month labels -->
         <div class="months">
-          <span v-for="(month, index) in months" :key="index">{{ month }}</span>
+          <span
+            v-for="label in monthLabels"
+            :key="label.index"
+            :style="{ gridColumnStart: label.index + 2 }"
+          >{{ label.month }}</span>
         </div>
 
         <div class="heatmap-grid">
-          <!-- Day Labels -->
+          <!-- Day labels -->
           <div class="days">
-            <span>Mon</span>
-            <span>Wed</span>
-            <span>Fri</span>
+            <span :style="{ gridRowStart: 2 }">Mon</span>
+            <span :style="{ gridRowStart: 4 }">Wed</span>
+            <span :style="{ gridRowStart: 6 }">Fri</span>
           </div>
 
           <!-- Heatmap -->
           <div class="heatmap">
             <div
-              v-for="(day, index) in data.heatmapData"
-              :key="index"
-              class="heatmap-cell"
-              :style="{ backgroundColor: getColor(day.contributionCount) }"
-              :title="`${day.date}: ${day.contributionCount} contributions`"
-            ></div>
+              v-for="(week, weekIndex) in weeks"
+              :key="weekIndex"
+              class="week"
+            >
+              <div
+                v-for="(day, dayIndex) in week.contributionDays"
+                :key="dayIndex"
+                class="heatmap-cell"
+                :style="{ backgroundColor: getColor(day.contributionCount) }"
+                :title="`${day.date}: ${day.contributionCount} contributions`"
+              ></div>
+            </div>
           </div>
         </div>
       </div>
@@ -50,7 +58,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+
 const data = ref(null)
+const weeks = ref([])
+const monthLabels = ref([])
 const loading = ref(true)
 const error = ref(null)
 
@@ -58,7 +69,9 @@ onMounted(async () => {
   try {
     const response = await fetch('/api/github-contributions')
     if (!response.ok) throw new Error('API failed')
-    data.value = await response.json()
+    const result = await response.json()
+    data.value = result
+    organizeWeeks(result.heatmapData)
   } catch (e) {
     error.value = 'Failed to load GitHub data'
     console.error(e)
@@ -66,6 +79,27 @@ onMounted(async () => {
     loading.value = false
   }
 })
+
+// convert flat array back to weeks array
+function organizeWeeks(days) {
+  const grouped = []
+  for (let i = 0; i < days.length; i += 7) {
+    grouped.push({ contributionDays: days.slice(i, i + 7) })
+  }
+  weeks.value = grouped
+
+  // generate month labels
+  let currentMonth = ''
+  monthLabels.value = []
+  weeks.value.forEach((week, index) => {
+    const date = new Date(week.contributionDays[0].date)
+    const month = date.toLocaleString('default', { month: 'short' })
+    if (month !== currentMonth) {
+      monthLabels.value.push({ index, month })
+      currentMonth = month
+    }
+  })
+}
 
 function getColor(count) {
   if (count === 0) return '#1a1a1a'
@@ -75,7 +109,6 @@ function getColor(count) {
   return '#00ccff'
 }
 
-const months = ['May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May']
 const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
 </script>
 
@@ -83,35 +116,25 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
 .github-contributions {
   background: var(--eerie-black-2);
   border: 1px solid var(--jet);
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 15px;
   box-shadow: var(--shadow-1);
   color: var(--white-2);
-  text-align: center;
-  margin-top: 20px;
 }
-.total {
-  font-weight: bold;
-  color: #00ccff;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-.user-info {
+.header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
 }
-.user-info img {
+.header img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   margin-right: 15px;
 }
-.user-info .name {
-  font-size: 18px;
+.total {
   font-weight: bold;
   color: #00ccff;
+  font-size: 16px;
 }
 .heatmap-wrapper {
   display: flex;
@@ -119,9 +142,8 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   align-items: center;
 }
 .months {
-  display: flex;
-  justify-content: space-between;
-  width: 430px;
+  display: grid;
+  grid-template-columns: repeat(53, 8px);
   font-size: 10px;
   color: #ccc;
   margin-bottom: 4px;
@@ -130,22 +152,21 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   display: flex;
 }
 .days {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: repeat(7, 8px);
   font-size: 10px;
   color: #ccc;
   margin-right: 4px;
-  height: 56px;
-}
-.days span {
-  height: 18px;
 }
 .heatmap {
   display: grid;
   grid-template-columns: repeat(53, 8px);
   grid-template-rows: repeat(7, 8px);
   gap: 2px;
+}
+.week {
+  display: grid;
+  grid-template-rows: repeat(7, 8px);
 }
 .heatmap-cell {
   width: 8px;
@@ -164,10 +185,7 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
     white-space: nowrap;
     padding-bottom: 8px;
   }
-  .heatmap {
-    min-width: 430px;
-  }
-  .months {
+  .heatmap, .months {
     min-width: 430px;
   }
 }
@@ -194,7 +212,6 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
     opacity: 1;
   }
 }
-
 .legend {
   display: flex;
   align-items: center;
