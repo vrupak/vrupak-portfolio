@@ -143,7 +143,7 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
 }
 .months {
   display: grid;
-  grid-template-columns: repeat(53, 8px);
+  grid-template-columns: repeat(53, 10px);
   font-size: 10px;
   color: #ccc;
   margin-bottom: 4px;
@@ -153,24 +153,24 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
 }
 .days {
   display: grid;
-  grid-template-rows: repeat(7, 8px);
+  grid-template-rows: repeat(7, 10px);
   font-size: 10px;
   color: #ccc;
   margin-right: 4px;
 }
 .heatmap {
   display: grid;
-  grid-template-columns: repeat(53, 8px);
-  grid-template-rows: repeat(7, 8px);
+  grid-template-columns: repeat(53, 10px);
+  grid-template-rows: repeat(7, 10px);
   gap: 2px;
 }
 .week {
   display: grid;
-  grid-template-rows: repeat(7, 8px);
+  grid-template-rows: repeat(7, 10px);
 }
 .heatmap-cell {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 2px;
   transition: transform 0.2s ease;
 }
@@ -186,20 +186,19 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
     padding-bottom: 8px;
   }
   .heatmap, .months {
-    min-width: 430px;
+    min-width: 540px;
   }
 }
 
-/* Scrollbar styling */
+/* Updated scrollbar */
 .heatmap-wrapper::-webkit-scrollbar {
   height: 6px;
 }
 .heatmap-wrapper::-webkit-scrollbar-track {
-  background: var(--eerie-black-2);
+  background: #222;
 }
 .heatmap-wrapper::-webkit-scrollbar-thumb {
-  background-color: #00ccff;
-  border-radius: 3px;
+  background-color: #999;
 }
 
 /* Fade-in animation */
