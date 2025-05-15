@@ -87,21 +87,34 @@ function organizeWeeks(days) {
   }
   weeks.value = grouped
 
-  // GitHub-style month labels: label only on week containing day 1
-  let seenMonths = new Set()
-  monthLabels.value = []
-  weeks.value.forEach((week, index) => {
-    week.contributionDays.forEach(day => {
-      const date = new Date(day.date)
-      if (date.getDate() === 1) {
-        const month = date.toLocaleString('default', { month: 'short' })
-        if (!seenMonths.has(month)) {
-          monthLabels.value.push({ index, month })
-          seenMonths.add(month)
+  const labels = []
+  const monthsSeen = new Set()
+  const today = new Date()
+  const startDate = new Date(today)
+  startDate.setDate(today.getDate() - 364) // start of graph
+
+  for (let m = 0; m < 12; m++) {
+    const labelDate = new Date(startDate.getFullYear(), startDate.getMonth() + m, 1)
+    if (labelDate > today) break
+    const labelMonth = labelDate.toLocaleString('default', { month: 'short' })
+
+    for (let weekIndex = 0; weekIndex < weeks.value.length; weekIndex++) {
+      const week = weeks.value[weekIndex]
+      if (week.contributionDays.some(day => {
+        const d = new Date(day.date)
+        return d.getFullYear() === labelDate.getFullYear() &&
+               d.getMonth() === labelDate.getMonth() &&
+               d.getDate() === 1
+      })) {
+        if (!monthsSeen.has(labelMonth)) {
+          labels.push({ index: weekIndex, month: labelMonth })
+          monthsSeen.add(labelMonth)
         }
+        break
       }
-    })
-  })
+    }
+  }
+  monthLabels.value = labels
 }
 
 function getColor(count) {
@@ -123,7 +136,6 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   padding: 15px;
   box-shadow: var(--shadow-1);
   color: var(--white-2);
-  margin-top: 20px;
 }
 .header {
   display: flex;
