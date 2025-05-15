@@ -5,4 +5,5 @@ import App from './App.vue'
 import './styles/variables.css'
 import './styles/base.css'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.mount('#app')

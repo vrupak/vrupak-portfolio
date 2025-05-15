@@ -57,12 +57,19 @@
         </li>
       </ul>
     </section>
+
+    <GithubContributions githubUsername="vrupak" />
   </article>
 </template>
 
 <script>
+import GithubContributions from './GithubContributions.vue';
+
 export default {
   name: 'AboutComponent',
+  components: {
+    GithubContributions
+  },
   data() {
     return {
       services: [
@@ -98,11 +105,11 @@ export default {
 
 .service { margin-bottom: 35px; }
 .service-title { margin-bottom: 20px; }
-.service-list { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.service-list { display: grid; grid-template-columns: 1fr; gap: 15px; }
 .service-item {
   position: relative;
   background: var(--border-gradient-onyx);
-  padding: 20px;
+  padding: 15px;
   border-radius: 16px;
   box-shadow: var(--shadow-2);
   transition: transform 0.2s ease;
@@ -195,7 +202,7 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 18px;
-    padding: 30px;
+    padding: 15px;
   }
   .service-content-box { text-align: left; }
 }
