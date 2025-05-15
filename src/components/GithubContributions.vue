@@ -5,7 +5,7 @@
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
       <div class="header">
-        <img :src="data.avatar_url" alt="Avatar" />
+        <img :src="data.avatar_url" alt="Avatar" class="github-avatar"/>
         <p class="total">{{ data.totalContributions }} contributions in the last year</p>
       </div>
 
@@ -136,6 +136,7 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   padding: 15px;
   box-shadow: var(--shadow-1);
   color: var(--white-2);
+  margin-top: 20px;
 }
 .header {
   display: flex;
@@ -152,6 +153,7 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   font-weight: bold;
   color: #00ccff;
   font-size: 16px;
+  align-items: center;
 }
 .heatmap-wrapper {
   display: flex;
@@ -244,5 +246,11 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   height: 12px;
   border-radius: 2px;
   margin: 0 2px;
+}
+.github-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--sky-cyan);
 }
 </style>
