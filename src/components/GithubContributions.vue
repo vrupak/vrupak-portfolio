@@ -80,7 +80,6 @@ onMounted(async () => {
   }
 })
 
-// convert flat array back to weeks array
 function organizeWeeks(days) {
   const grouped = []
   for (let i = 0; i < days.length; i += 7) {
@@ -88,16 +87,20 @@ function organizeWeeks(days) {
   }
   weeks.value = grouped
 
-  // generate month labels
-  let currentMonth = ''
+  // GitHub-style month labels: label only on week containing day 1
+  let seenMonths = new Set()
   monthLabels.value = []
   weeks.value.forEach((week, index) => {
-    const date = new Date(week.contributionDays[0].date)
-    const month = date.toLocaleString('default', { month: 'short' })
-    if (month !== currentMonth) {
-      monthLabels.value.push({ index, month })
-      currentMonth = month
-    }
+    week.contributionDays.forEach(day => {
+      const date = new Date(day.date)
+      if (date.getDate() === 1) {
+        const month = date.toLocaleString('default', { month: 'short' })
+        if (!seenMonths.has(month)) {
+          monthLabels.value.push({ index, month })
+          seenMonths.add(month)
+        }
+      }
+    })
   })
 }
 
@@ -120,10 +123,12 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   padding: 15px;
   box-shadow: var(--shadow-1);
   color: var(--white-2);
+  margin-top: 20px;
 }
 .header {
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 .header img {
   width: 60px;
@@ -156,7 +161,8 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   grid-template-rows: repeat(7, 10px);
   font-size: 10px;
   color: #ccc;
-  margin-right: 4px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 .heatmap {
   display: grid;
