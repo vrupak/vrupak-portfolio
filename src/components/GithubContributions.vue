@@ -201,7 +201,7 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
 }
 
 /* Scroller for small screens */
-@media (max-width: 676px) {
+@media (max-width: 806px) {
   .heatmap-wrapper {
     overflow-x: auto;
     white-space: nowrap;
