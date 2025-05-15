@@ -19,20 +19,7 @@
       </p>
     </section>
 
-    <section class="service">
-      <h3 class="h3 service-title">What I'm doing</h3>
-      <ul class="service-list">
-        <li v-for="(service, index) in services" :key="index" class="service-item">
-          <div class="service-icon-box">
-            <img :src="service.icon" :alt="service.title" width="40">
-          </div>
-          <div class="service-content-box">
-            <h4 class="h4 service-item-title">{{ service.title }}</h4>
-            <p class="service-item-text">{{ service.description }}</p>
-          </div>
-        </li>
-      </ul>
-    </section>
+    <GithubContributions githubUsername="vrupak" />
 
     <section class="testimonials">
       <h3 class="h3 testimonials-title">Testimonials</h3>
@@ -58,7 +45,21 @@
       </ul>
     </section>
 
-    <GithubContributions githubUsername="vrupak" />
+    <section class="service">
+      <h3 class="h3 service-title">What I'm doing</h3>
+      <ul class="service-list">
+        <li v-for="(service, index) in services" :key="index" class="service-item">
+          <div class="service-icon-box">
+            <img :src="service.icon" :alt="service.title" width="40">
+          </div>
+          <div class="service-content-box">
+            <h4 class="h4 service-item-title">{{ service.title }}</h4>
+            <p class="service-item-text">{{ service.description }}</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
   </article>
 </template>
 
@@ -101,10 +102,10 @@ export default {
   font-weight: var(--fw-300);
   line-height: 1.6;
 }
-.about-text p { margin-bottom: 15px; }
-
-.service { margin-bottom: 35px; }
-.service-title { margin-bottom: 20px; }
+.about-text p { margin-bottom: 5px; }
+.about-text { margin-bottom: 20px; }
+.service { margin-bottom: 5px; }
+.service-title { margin-bottom: 20px; margin-top: -15px}
 .service-list { display: grid; grid-template-columns: 1fr; gap: 15px; }
 .service-item {
   position: relative;
@@ -148,6 +149,9 @@ export default {
   align-items: center;
   gap: 12px;
   margin-bottom: 10px;
+}
+.testimonials-title{
+  margin-top: -15px;
 }
 .testimonial-avatar {
   width: 50px;
