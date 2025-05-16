@@ -27,7 +27,9 @@
         <li v-for="testimonial in testimonials" :key="testimonial.id" class="testimonials-item">
           <div class="content-card">
             <div class="testimonial-header">
-              <img :src="testimonial.avatar" :alt="testimonial.name" class="testimonial-avatar">
+              <a :href="testimonial.url" target="_blank" rel="noopener">
+                <img :src="testimonial.avatar" :alt="testimonial.name" class="testimonial-avatar">
+              </a>
               <div class="testimonial-info">
                 <h4 class="h4 testimonial-name">{{ testimonial.name }}</h4>
                 <span class="testimonial-company">{{ testimonial.company }}</span>
@@ -87,6 +89,7 @@ export default {
           company: 'Arizona State University',
           text: 'Vidya distinguishes himself as a self-starter. I recruited him to my lab when I noticed his outstanding academic performance. But grades in a classroom are just one measure of potential, so I was not sure how it would go. It could not have gone better. Vidya jumped right in on our development for the SUCCESS summer camp, leading efforts in VR and gaming. So I then recruited him for my EdTech grant, and again he has been outstanding over the past year. Working on a large-scale integration project involving a plethora of technologies - Unity, VR, C#, Python, Java, activeMQ, Kafka and more, Vidya has excelled at providing innovative solutions while interfacing with multiple collaborators. He has been unique in this capacity and I will miss him in my lab. I enthusiastically recommend him to any professional opportunities to which he is applying.',
           date: '30 April, 2025',
+          url: 'https://www.linkedin.com/in/kevin-gary-az/',
           isExpanded: false
         }
       ]
@@ -154,10 +157,13 @@ export default {
   margin-top: -15px;
 }
 .testimonial-avatar {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   border-radius: 50%;
+  border: 2px solid var(--light-gray);
+}
+.testimonial-avatar:hover {
   border: 2px solid var(--sky-cyan);
 }
 .testimonial-info { display: flex; flex-direction: column; }

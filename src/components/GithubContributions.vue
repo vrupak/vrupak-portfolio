@@ -5,7 +5,9 @@
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
       <div class="header">
-        <img :src="data.avatar_url" alt="Avatar" class="github-avatar"/>
+        <a href="https://github.com/vrupak" target="_blank" rel="noopener">
+          <img :src="data.avatar_url" alt="Avatar" class="github-avatar"/>
+        </a>
         <p class="total">{{ data.totalContributions }} contributions in the last year</p>
       </div>
 
@@ -251,6 +253,9 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  border: 2px solid var(--light-gray);
+}
+.testimonial-avatar:hover {
   border: 2px solid var(--sky-cyan);
 }
 </style>
