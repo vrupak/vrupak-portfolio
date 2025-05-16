@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@octokit/rest": "19.0.7",
+    "@vercel/analytics": "^1.5.0",
     "apexcharts": "^4.7.0",
     "core-js": "^3.8.3",
     "graphql-request": "6.1.0",

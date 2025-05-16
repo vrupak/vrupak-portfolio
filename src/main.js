@@ -5,5 +5,8 @@ import App from './App.vue'
 import './styles/variables.css'
 import './styles/base.css'
 
+import { inject } from '@vercel/analytics'
+inject()
+
 const app = createApp(App)
 app.mount('#app')
