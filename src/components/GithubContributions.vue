@@ -255,7 +255,7 @@ const legendColors = ['#1a1a1a', '#004455', '#006688', '#0099cc', '#00ccff']
   border-radius: 50%;
   border: 2px solid var(--light-gray);
 }
-.testimonial-avatar:hover {
+.github-avatar:hover {
   border: 2px solid var(--sky-cyan);
 }
 </style>
