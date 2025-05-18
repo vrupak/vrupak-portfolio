@@ -98,11 +98,11 @@ export default {
         },
         {
           id: 3,
-          title: 'Agile/Lean Metrics Calculator',
+          title: 'Linkedin Job Sponsorship Detector',
           category: 'Web Development',
-          link: 'https://github.com/SER516-Clever/SER516-Team-Clever',
-          image: 'Agile-Lean-Metrics.png',
-          description: 'Developed a comprehensive dashboard visualizing key Agile metrics (Burndown, Lead Time, Cycle Time) for Taiga projects. Built with React frontend and Spring Boot backend, evolved from monolithic to microservices architecture using Docker. Implemented CI/CD with GitHub Actions and applied evolving Agile methodologies from Scrum to Lean/Kanban to optimize development workflow.'
+          link: 'https://github.com/vrupak/job-sponsorship-detector',
+          image: 'JobGoblin.png',
+          description: 'A Chrome extension that highlights H1B and visa sponsorship-related keywords in LinkedIn job descriptions. It also flags companies known to sponsor visas with visual markers both in the job description and the sidebar, helping international job seekers quickly identify relevant opportunities.'
         },
         {
           id: 4,
