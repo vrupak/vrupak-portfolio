@@ -59,11 +59,19 @@
     <div v-if="selectedProject" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
         <img :src="getImageUrl(selectedProject.image)" alt="Project Image" />
-        <h2>{{ selectedProject.title }}</h2>
+        <h2 class="project-heading">
+          {{ selectedProject.title }}
+          <a :href="selectedProject.link" target="_blank" rel="noopener" class="icon-link">
+            <ion-icon
+              :name="selectedProject.link.includes('github.com') ? 'logo-github' : 'rocket-outline'"
+              class="project-link-icon"
+            ></ion-icon>
+          </a>
+        </h2>
         <p>{{ selectedProject.description }}</p>
         <div class="modal-footer">
           <button class="close-btn" @click="closeModal">Close</button>
-          <a :href="selectedProject.link" target="_blank">Visit Project</a>
+          <!-- <a :href="selectedProject.link" target="_blank">Visit Project</a> -->
         </div>
       </div>
     </div>
@@ -409,4 +417,19 @@ export default {
   margin-left: auto;
 }
 
+.project-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.project-link-icon {
+  font-size: 1.5rem;
+  color: var(--sky-cyan);
+}
 </style>
