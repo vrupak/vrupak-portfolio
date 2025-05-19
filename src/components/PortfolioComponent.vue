@@ -384,6 +384,27 @@ export default {
   }
 }
 
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 16px;
+    width: 95%;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .modal-footer a {
+    margin-left: 0;
+  }
+
+  .close-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 @media (min-width: 1220px) {
   .project-list {
     grid-template-columns: repeat(3, 1fr);
@@ -412,6 +433,8 @@ export default {
   width: 90%;
   box-shadow: var(--shadow-4);
   text-align: justify;
+  overflow-y: auto;
+  max-height: 90vh;
 }
 
 .modal-content img {
