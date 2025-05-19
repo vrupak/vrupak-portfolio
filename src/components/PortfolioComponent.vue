@@ -60,12 +60,27 @@
       <div class="modal-content">
         <img :src="getImageUrl(selectedProject.image)" alt="Project Image" />
         <h2 class="project-heading">
-          {{ selectedProject.title }}
-          <a :href="selectedProject.link" target="_blank" rel="noopener" class="icon-link">
-            <ion-icon
-              :name="selectedProject.link.includes('github.com') ? 'logo-github' : 'rocket-outline'"
-              class="project-link-icon"
-            ></ion-icon>
+          <a
+            :href="selectedProject.link"
+            target="_blank"
+            rel="noopener"
+            class="tooltip-wrapper full-link"
+          >
+            <span class="link-content">
+              {{ selectedProject.title }}
+              <ion-icon
+                :name="selectedProject.link.includes('github.com') ? 'logo-github' : 'rocket-outline'"
+                class="project-link-icon"
+              ></ion-icon>
+            </span>
+
+            <span class="custom-tooltip">
+              {{
+                selectedProject.link.includes('github.com')
+                  ? 'Click here to visit the project repo'
+                  : 'Click here to visit the deployed site'
+              }}
+            </span>
           </a>
         </h2>
         <p>{{ selectedProject.description }}</p>
@@ -348,6 +363,7 @@ export default {
   }
 }
 
+/* Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -380,11 +396,59 @@ export default {
   margin-bottom: 16px;
 }
 
-.modal-content h2 {
-  color: var(--white-2);
-  margin-bottom: 10px;
+/* Title + Icon link */
+.project-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+.tooltip-wrapper.full-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--sky-cyan);
+  position: relative;
+}
+
+.link-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.8rem;
+  font-weight: var(--fw-500);
+}
+
+.project-link-icon {
+  font-size: 1.5rem;
+  color: var(--sky-cyan);
+}
+
+/* Tooltip */
+.custom-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  transition: opacity 0.15s ease-in-out;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.tooltip-wrapper:hover .custom-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Modal footer */
 .modal-content p {
   color: var(--light-gray);
   margin-bottom: 16px;
@@ -415,21 +479,5 @@ export default {
 
 .modal-footer a {
   margin-left: auto;
-}
-
-.project-heading {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.icon-link {
-  display: inline-flex;
-  align-items: center;
-}
-
-.project-link-icon {
-  font-size: 1.5rem;
-  color: var(--sky-cyan);
 }
 </style>
