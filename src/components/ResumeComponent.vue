@@ -48,8 +48,53 @@
         </li>
       </ol>
     </section>
+
+    <section class="timeline techstack-timeline">
+      <div class="title-wrapper">
+        <div class="icon-box">
+          <ion-icon name="construct-outline"></ion-icon>
+        </div>
+        <h3 class="h3">Tech Stack</h3>
+      </div>
+
+      <ol class="timeline-list">
+        <li class="timeline-item">
+          <h4 class="h4 timeline-item-title">Frontend</h4>
+          <p class="timeline-text">
+            <span class="tech-label">Languages:</span> JavaScript, HTML, CSS<br>
+            <span class="tech-label">Frameworks/Libraries:</span> Vue.js, React (Tailwind), Babylon.js, Three.js<br>
+            <span class="tech-label">Tools:</span> Figma, Axure RP, draw.io, Chrome Extensions, Vite
+          </p>
+        </li>
+        <li class="timeline-item">
+          <h4 class="h4 timeline-item-title">Backend</h4>
+          <p class="timeline-text">
+            <span class="tech-label">Languages:</span> Java, C#, Node.js<br>
+            <span class="tech-label">Frameworks:</span> Spring Boot, Unity, Node.js (GitHub/Taiga APIs)
+          </p>
+        </li>
+        <li class="timeline-item">
+          <h4 class="h4 timeline-item-title">Game/VR Development</h4>
+          <p class="timeline-text">
+            Unity (2D/3D/VR games), C# scripting, Oculus/VR SDKs
+          </p>
+        </li>
+        <li class="timeline-item">
+          <h4 class="h4 timeline-item-title">Data & Messaging</h4>
+          <p class="timeline-text">
+            Apache Kafka, KSQLDB, MySQL/SQL
+          </p>
+        </li>
+        <li class="timeline-item">
+          <h4 class="h4 timeline-item-title">Dev Tools & Practices</h4>
+          <p class="timeline-text">
+            Docker, Git, GitHub, Github Actions, Vercel, REST APIs, DTOs, VS Code, Chrome DevTools
+          </p>
+        </li>
+      </ol>
+    </section>
     
-    <section class="skill">
+    <!-- <section class="skill">
       <h3 class="h3 skills-title">My skills</h3>
 
       <ul class="skills-list content-card">
@@ -64,7 +109,7 @@
           </div>
         </li>
       </ul>
-    </section>
+    </section> -->
   </article>
 </template>
 
@@ -292,4 +337,19 @@ export default {
   font-size: 1.5em;
 }
 
+.techstack-timeline .timeline-item::before {
+  content: none;
+}
+
+.techstack-timeline .timeline-item::after {
+  height: 6px;
+  width: 6px;
+  background: var(--text-gradient-yellow);
+}
+
+.tech-label {
+  display: inline;
+  color: var(--deep-cyan);
+  font-weight: var(--fw-400);
+}
 </style>
