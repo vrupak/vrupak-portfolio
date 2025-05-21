@@ -145,10 +145,6 @@ export default {
 </script>
 
 <style scoped>
-.filter-list { 
-  display: none; 
-}
-
 .filter-select-box {
   position: relative;
   margin-bottom: 25px;
@@ -189,19 +185,28 @@ export default {
   pointer-events: all;
 }
 
-.select-item button {
+.select-item button,
+.filter-item button {
   background: var(--eerie-black-2);
   color: var(--light-gray);
-  font-size: var(--fs-6);
+  font-size: var(--fs-5);
   font-weight: var(--fw-300);
   text-transform: capitalize;
   width: 100%;
   padding: 8px 10px;
   border-radius: 8px;
+  transition: var(--transition-1);
+  margin-top: -10px;
 }
 
-.select-item button:hover {
+.select-item button:hover,
+.filter-item button:hover {
   background: var(--eerie-black-1);
+  color: var(--light-gray-70);
+}
+
+.filter-item button.active {
+  color: var(--sky-cyan);
 }
 
 .project-list {
@@ -209,20 +214,6 @@ export default {
   grid-template-columns: 1fr;
   gap: 30px;
   margin-bottom: 10px;
-}
-
-.project-item {
-  display: none;
-}
-
-.project-item.active {
-  display: block;
-  animation: scaleUp 0.25s ease forwards;
-}
-
-@keyframes scaleUp {
-  0% { transform: scale(0.5); }
-  100% { transform: scale(1); }
 }
 
 .project-img {
@@ -313,20 +304,6 @@ export default {
     margin-bottom: 30px;
   }
 
-  .filter-item button {
-    color: var(--light-gray);
-    font-size: var(--fs-5);
-    transition: var(--transition-1);
-  }
-
-  .filter-item button:hover {
-    color: var(--light-gray-70);
-  }
-
-  .filter-item button.active {
-    color: var(--sky-cyan);
-  }
-
   .filter-select-box {
     display: none;
   }
@@ -337,6 +314,14 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .filter-list {
+    display: none;
+  }
+
+  .filter-select-box {
+    display: block;
+  }
+
   .modal-content {
     padding: 16px;
     width: 95%;
@@ -345,10 +330,6 @@ export default {
   .modal-footer {
     flex-direction: column;
     gap: 12px;
-  }
-
-  .modal-footer a {
-    margin-left: 0;
   }
 
   .close-btn {
@@ -396,7 +377,6 @@ export default {
   margin-bottom: 16px;
 }
 
-/* Title + Icon link */
 .project-heading {
   display: flex;
   align-items: center;
@@ -424,7 +404,6 @@ export default {
   color: var(--sky-cyan);
 }
 
-/* Tooltip */
 .custom-tooltip {
   visibility: hidden;
   opacity: 0;
@@ -448,7 +427,6 @@ export default {
   opacity: 1;
 }
 
-/* Modal footer */
 .modal-content p {
   color: var(--light-gray);
   margin-bottom: 16px;
@@ -475,9 +453,5 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-top: 16px;
-}
-
-.modal-footer a {
-  margin-left: auto;
 }
 </style>
