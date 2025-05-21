@@ -6,9 +6,17 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development
+
+Run this command in one terminal:
 ```
 npm run serve
 ```
+
+Then, in a second terminal, run:
+```
+vercel dev
+```
+This will allow the GitHub mock data to load correctly in development.
 
 ### Compiles and minifies for production
 ```

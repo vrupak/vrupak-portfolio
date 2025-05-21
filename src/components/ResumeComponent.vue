@@ -342,8 +342,6 @@ export default {
 }
 
 .techstack-timeline .timeline-item::after {
-  height: 6px;
-  width: 6px;
   background: var(--text-gradient-yellow);
 }
 
