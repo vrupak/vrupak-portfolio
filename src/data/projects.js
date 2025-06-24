@@ -35,7 +35,7 @@ export const projects = [
         id: 5,
         title: 'ST Runner',
         category: 'Games',
-        link: '#',
+        link: 'https://drive.google.com/file/d/1fYylvaLo7VBHpfjfZWOl-jfnG_-Dvqe1/view?usp=sharing',
         image: 'Runner.png',
         description: 'Led Stranger Things-themed game development session for middle and high school students at SUCCESS summer camp. Created a customizable Unity 2.5D runner game template designed for beginners, enabling students with minimal programming experience to learn fundamental game development concepts through hands-on customization activities.'
     },
@@ -43,7 +43,7 @@ export const projects = [
         id: 6,
         title: 'ST Room VR',
         category: 'Games',
-        link: '#',
+        link: 'https://drive.google.com/file/d/1z16ErK_KbT0GqQ6ugfVe5SvvlzQBDpOZ/view?usp=sharing',
         image: 'RoomVR.png',
         description: 'Led Stranger Things-themed VR development session for 6th-12th grade students at SUCCESS summer camp. Designed and created an interactive Meta Quest 2 VR experience featuring integrated simple tasks, enabling students to gain hands-on understanding of virtual reality technology through practical engagement.'
     },
