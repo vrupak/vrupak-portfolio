@@ -60,9 +60,9 @@
 
       <ol class="timeline-list">
         <li class="timeline-item">
-          <h4 class="h4 timeline-item-title">SUCCESS: A Summer Camp Promoting On-campus Connections in Software Engineering</h4>
+          <h4 class="h4 timeline-item-title"><a href="https://nemo.asee.org/public/conferences/365/papers/46619/view" target="_blank">SUCCESS: A Summer Camp Promoting On-campus Connections in Software Engineering</a></h4>
           <p class="timeline-text">
-            <span class="tech-label">Co-author.</span> Awarded Best Paper (Software Engineering Division) at the ASEE Conference, Montreal, 2025<br>
+            <span class="tech-label"></span>Co-author. Awarded Best Paper (Software Engineering Division) at the ASEE Conference, Montreal, 2025<br>
           </p>
         </li>
       </ol>
@@ -368,5 +368,25 @@ export default {
   display: inline;
   color: var(--deep-cyan);
   font-weight: var(--fw-400);
+}
+
+.timeline-item-title a {
+  color: var(--deep-cyan);
+  text-decoration: none;
+  font-weight: var(--fw-400);
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.timeline-item-title a:hover {
+  color: var(--text-gradient-yellow);
+  text-decoration: underline;
+}
+
+.timeline-item-title a:visited {
+  color: var(--deep-cyan);
+}
+
+.timeline-item-title a:active {
+  color: var(--white-1);
 }
 </style>
