@@ -123,11 +123,11 @@ export default {
   },
   data() {
     return {
-      resumeUrl: 'https://www.dropbox.com/scl/fi/dn7ehwek0duvi4ornm9gm/VR_Resume_FE-FS.pdf?rlkey=kvy782a5rht5gerxos4ui1936&st=h5guqasv&dl=0',
+      resumeUrl: 'https://www.dropbox.com/scl/fi/rx24tboxhxxqzo46s7ahd/VRupak_frontend.pdf?rlkey=bhey0blxmg1slne0i1cn7gqhg&st=wvbg8h1x&dl=0',
       education: [
         {
           school: 'Arizona State University, USA',
-          period: '08/2023 — 05/2025',
+          period: '08/2023 — Present',
           description: 'Master of Science in Software Engineering.',
           gpa: '4.00'
         },
