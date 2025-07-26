@@ -49,6 +49,25 @@
       </ol>
     </section>
 
+    <!-- Research Paper -->
+    <section class="timeline techstack-timeline">
+      <div class="title-wrapper">
+        <div class="icon-box">
+          <ion-icon name="newspaper-outline"></ion-icon>
+        </div>
+        <h3 class="h3">Publications</h3>
+      </div>
+
+      <ol class="timeline-list">
+        <li class="timeline-item">
+          <h4 class="h4 timeline-item-title">SUCCESS: A Summer Camp Promoting On-campus Connections in Software Engineering</h4>
+          <p class="timeline-text">
+            <span class="tech-label">Co-author.</span> Awarded Best Paper (Software Engineering Division) at the ASEE Conference, Montreal, 2025<br>
+          </p>
+        </li>
+      </ol>
+    </section>
+
     <section class="timeline techstack-timeline">
       <div class="title-wrapper">
         <div class="icon-box">
