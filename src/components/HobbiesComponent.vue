@@ -4,7 +4,7 @@
             <h2 class="h2 article-title">My Hobbies</h2>
             <p class="art-description">
                 Outside of work, I am passionate about both creative expression and maintaining an active lifestyle.
-                Since 2018, I have practiced stipple sketching—a unique technique of creating intricate designs by
+                Since 2018, I have practiced stipple sketching, a unique technique of creating intricate designs by
                 placing thousands of tiny dots. My artwork primarily explores abstract concepts, darker themes, and
                 elements of nature, and has been a deeply personal outlet for creativity and focus.
             </p>
@@ -36,7 +36,7 @@
         <header class="hobbies-description">
             <p>I also enjoy staying physically active, particularly through weightlifting. While I now play table tennis and football(soccer) more casually, I used to be more active and still enjoy an occasional match.</p>
             <p>I also have a strong interest in action RPGs and roguelikes, with <em>Path of Exile</em> being a personal favorite. Gaming serves as a fun escape and a way to unwind. I also find balance outdoors by going on monthly hikes and occasionally trying bouldering for a different physical challenge.</p>
-            <p>Music is another constant in my life—I listen to a diverse range including nu metal, rock, drum and bass, EDM, and more mellow tracks depending on my mood.</p>
+            <p>Music is another constant in my life. I listen to a diverse range including nu metal, rock, drum and bass, EDM, and more mellow tracks depending on my mood.</p>
         </header>
     </article>
 </template>
