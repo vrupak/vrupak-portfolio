@@ -136,6 +136,8 @@ export default {
     },
     openModal(project) {
       this.selectedProject = project;
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden'
     },
     closeModal() {
       this.selectedProject = null;
