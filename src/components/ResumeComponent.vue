@@ -32,6 +32,7 @@
       </ol>
     </section>
 
+    <!-- Experience -->
     <section class="timeline">
       <div class="title-wrapper">
         <div class="icon-box">
@@ -44,7 +45,9 @@
         <li v-for="(exp, index) in experience" :key="index" class="timeline-item">
           <h4 class="h4 timeline-item-title">{{ exp.role }}</h4>
           <span>{{ exp.period }}</span>
-          <p class="timeline-text">{{ exp.description }}</p>
+          <ul class="timeline-text">
+            <li v-for="(point, idx) in exp.description" :key="idx">- {{ point }}</li>
+          </ul>
         </li>
       </ol>
     </section>
@@ -159,19 +162,32 @@ export default {
       ],
       experience: [
         {
-          role: 'Software Engineer - HEAL Lab, ASU',
-          period: '07/2024 — Present',
-          description: 'Integrated GIFT with a Unity VR training app, improved scalability with RAW sockets and Kafka, refactored legacy code following SOLID principles, and developed a mock Unity scene for course integration and control.'
+          role: 'Software Engineer - SteelArtt: Arizona State University, Tempe',
+          period: '05/2024 — Present',
+          description: [
+            'Implemented Kafka producer in C# and Kafka consumer in Java to stream training data into GIFT, ensuring reliable data flow.',
+            'Debugged and refactored legacy Java code to resolve critical integration issues, reducing bug reports by 30%.',
+            'Utilized SOLID principles to restructure modules, improving maintainability and reducing technical debt.',
+            'Built a mock Unity3D scene for testing GIFT-driven scenarios, accelerating integration testing by 3×.',
+            'Collaborated in an Agile team environment, managing tasks via Github project boards and iterative sprints.'
+          ]
         },
         {
-          role: 'Unity VR and Game Developer - SUCCESS camp, ASU',
-          period: '05/2024 — 07/2024',
-          description: 'Led a SUCCESS (Stranger Things themed) summer camp session on game development and VR, teaching 6th-12th graders using a Unity 2.5D runner game and a VR game on Meta Quest 2 to explore fundamental concepts.'
+          role: 'Unity VR and Game Developer - SUCCESS: Arizona State University, Tempe',
+          period: '01/2024 — 05/2024',
+          description: [
+            'Designed a Stranger Things-themed camp to teach game development basics using the Unity engine.',
+            'Developed a 2.5D game and a VR game to introduce students to core concepts of each type of development.',
+            'Integrated a physical Arduino-controlled light wall with the VR light wall using C++ for synchronized interactions.',
+            'Enabled students with no coding background to implement basic VR actions and interactions.'
+          ]
         },
         {
           role: 'Web Developer Intern - Kyrion Technologies, Delhi',
           period: '06/2020 — 08/2020',
-          description: 'Completed a web developer course, gaining hands-on experience in HTML, CSS, JavaScript, and agile development through practical projects and teamwork.'
+          description: [
+            'Completed a web developer course, gaining hands-on experience in HTML, CSS, JavaScript, and agile development through practical projects and teamwork.'
+          ]
         }
       ],
       skills: [
