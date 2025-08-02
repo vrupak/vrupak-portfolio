@@ -168,7 +168,7 @@ export default {
             'Implemented Kafka producer in C# and Kafka consumer in Java to stream training data into GIFT, ensuring reliable data flow.',
             'Debugged and refactored legacy Java code to resolve critical integration issues, reducing bug reports by 30%.',
             'Utilized SOLID principles to restructure modules, improving maintainability and reducing technical debt.',
-            'Built a mock Unity3D scene for testing GIFT-driven scenarios, accelerating integration testing by 3×.',
+            'Built a mock Unity3D scene for testing GIFT-driven scenarios, accelerating integration testing by 3x.',
             'Collaborated in an Agile team environment, managing tasks via Github project boards and iterative sprints.'
           ]
         },
