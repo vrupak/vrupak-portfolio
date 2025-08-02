@@ -22,12 +22,14 @@
         </div>
 
         <transition name="fade">
-            <div v-if="selectedIndex !== null" class="modal" @touchstart="startTouch" @touchend="endTouch"
+            <div v-if="selectedIndex !== null" class="modal" @click="handleModalClick" @touchstart="startTouch" @touchend="endTouch"
                 @mousedown="startMouse" @mouseup="endMouse" tabindex="0" @keydown.left="prevImage"
-                @keydown.right="nextImage" ref="modalRef">
+                @keydown.right="nextImage" @keydown.escape="closeModal" ref="modalRef">
                 <button class="nav-button left" @click.stop="prevImage">❮</button>
-                <img :src="images[selectedIndex % images.length]" alt="Expanded artwork" />
-                <p class="image-name">{{ getImageName(images[selectedIndex % images.length]) }}</p>
+                <div class="modal-content" @click.stop>
+                    <img :src="images[selectedIndex % images.length]" alt="Expanded artwork" />
+                    <p class="image-name">{{ getImageName(images[selectedIndex % images.length]) }}</p>
+                </div>
                 <button class="nav-button right" @click.stop="nextImage">❯</button>
                 <span class="close-button" @click="closeModal">✕</span>
             </div>
@@ -90,10 +92,22 @@ function animateRow(row, speed, setFrame) {
 
 const openModal = async (index) => {
     selectedIndex.value = index
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden'
     await nextTick()
     modalRef.value?.focus()
 }
-const closeModal = () => selectedIndex.value = null
+const closeModal = () => {
+    selectedIndex.value = null
+    // Restore body scroll when modal is closed
+    document.body.style.overflow = ''
+}
+const handleModalClick = (e) => {
+    // Close modal if clicking on the modal background (not on the content)
+    if (e.target === e.currentTarget) {
+        closeModal()
+    }
+}
 const prevImage = () => selectedIndex.value = (selectedIndex.value + images.length - 1) % images.length
 const nextImage = () => selectedIndex.value = (selectedIndex.value + 1) % images.length
 const getImageName = (path) => path.split('/').pop().replace('.jpg', '')
@@ -162,9 +176,16 @@ const endMouse = (e) => {
     outline: none;
 }
 
-.modal img {
-    max-width: 90%;
-    max-height: 90%;
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content img {
+    max-width: 90vw;
+    max-height: 90vh;
     border-radius: 12px;
 }
 
