@@ -46,7 +46,7 @@
           <h4 class="h4 timeline-item-title">{{ exp.role }}</h4>
           <span>{{ exp.period }}</span>
           <ul class="timeline-text">
-            <li v-for="(point, idx) in exp.description" :key="idx">- {{ point }}</li>
+            <li v-for="(point, idx) in exp.description" :key="idx">{{ point }}</li>
           </ul>
         </li>
       </ol>
@@ -186,7 +186,7 @@ export default {
           role: 'Web Developer Intern - Kyrion Technologies, Delhi',
           period: '06/2020 — 08/2020',
           description: [
-            'Completed a web developer course, gaining hands-on experience in HTML, CSS, JavaScript, and agile development through practical projects and teamwork.'
+            'Completed a web developer course, gaining hands-on experience in HTML, CSS and JavaScript through practical projects and teamwork.'
           ]
         }
       ],
@@ -404,5 +404,18 @@ export default {
 
 .timeline-item-title a:active {
   color: var(--white-1);
+}
+
+.timeline-text li {
+  list-style: none;
+  position: relative;
+  padding-left: 1.2em; /* Space for the dash */
+  text-indent: 0em; /* Creates hanging indent effect */
+}
+
+.timeline-text li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
 }
 </style>
