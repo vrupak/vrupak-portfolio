@@ -161,6 +161,16 @@ export default {
         }
       ],
       experience: [
+      {
+          role: 'AI Engineer - PulseHQ: Tempe',
+          period: '05/2024 — Present',
+          description: [
+            'Built a hybrid Graph RAG system combining Neo4j for entity-relationship mapping and Pinecone for vector similarity, enabling both structured and semantic document querying.',
+            'Developed a multi-tenant pipeline with Supabase storage and configuration management, ensuring scalable, isolated, and secure document processing per tenant.',
+            'Designed FastAPI APIs for document uploads, AI-driven extraction workflows, and unified querying across graph and semantic content.',
+            'Engineered production ready systems with asynchronous workers, error handling, idempotency, and retry mechanisms for reliable processing.',
+          ]
+        },
         {
           role: 'Software Engineer - SteelArtt: Arizona State University, Tempe',
           period: '05/2024 — Present',
