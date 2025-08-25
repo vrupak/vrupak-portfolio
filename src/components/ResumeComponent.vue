@@ -83,34 +83,42 @@
         <li class="timeline-item">
           <h4 class="h4 timeline-item-title">Frontend</h4>
           <p class="timeline-text">
-            <span class="tech-label">Languages:</span> JavaScript, HTML, CSS<br>
-            <span class="tech-label">Frameworks/Libraries:</span> Vue.js, React (Tailwind), Babylon.js, Three.js<br>
-            <span class="tech-label">Tools:</span> Figma, Axure RP, draw.io, Chrome Extensions, Vite
+            <span class="tech-label">Languages:</span> JavaScript, TypeScript, HTML, CSS<br>
+            <span class="tech-label">Frameworks/Libraries:</span> Vue.js, React.js, Angular, Redux, Tailwind CSS, Babylon.js, Three.js, D3.js<br>
+            <span class="tech-label">Tools:</span> Figma, Axure RP 10, Draw.io, Chrome Extensions, Vite, Chart.js
           </p>
         </li>
         <li class="timeline-item">
           <h4 class="h4 timeline-item-title">Backend</h4>
           <p class="timeline-text">
-            <span class="tech-label">Languages:</span> Java, C#, Node.js<br>
-            <span class="tech-label">Frameworks:</span> Spring Boot, Unity, Node.js (GitHub/Taiga APIs)
+            <span class="tech-label">Languages:</span> Java, Python, C#, Node.js<br>
+            <span class="tech-label">Frameworks:</span> Spring Boot, FastAPI, Firebase, Unity, Node.js (GitHub/Taiga APIs)
           </p>
         </li>
         <li class="timeline-item">
           <h4 class="h4 timeline-item-title">Game/VR Development</h4>
           <p class="timeline-text">
-            Unity (2D/3D/VR games), C# scripting, Oculus/VR SDKs
+            Unity3D (2D/3D/VR), C# scripting, Oculus/VR SDKs
           </p>
         </li>
         <li class="timeline-item">
           <h4 class="h4 timeline-item-title">Data & Messaging</h4>
           <p class="timeline-text">
-            Apache Kafka, KSQLDB, MySQL/SQL
+            MySQL, MongoDB, PostgreSQL, Redis, Neo4j, Pinecone<br>
+            Apache Kafka, KSQLDB, RAW Sockets, Graph RAG, API Gateway, ETL Pipelines
+          </p>
+        </li>
+        <li class="timeline-item">
+          <h4 class="h4 timeline-item-title">Cloud & DevOps</h4>
+          <p class="timeline-text">
+            Docker, GitHub Actions, AWS, CI/CD Pipelines, Supabase, Vercel
           </p>
         </li>
         <li class="timeline-item">
           <h4 class="h4 timeline-item-title">Dev Tools & Practices</h4>
           <p class="timeline-text">
-            Docker, Git, GitHub, Github Actions, Vercel, REST APIs, DTOs, VS Code, Chrome DevTools
+            Git, Gradle, Postman, JUnit, DTOs, RESTful APIs, GraphQL, VS Code, Chrome DevTools<br>
+            Agile, Scrumban, Scrum, Kanban, SOLID Principles, Component-Based Architecture
           </p>
         </li>
       </ol>
