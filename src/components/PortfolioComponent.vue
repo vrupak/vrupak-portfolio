@@ -37,20 +37,28 @@
           :key="project.id" 
           class="project-item"
           :class="{ active: isProjectVisible(project) }"
-          @click="openModal(project)"
         >
-          <figure class="project-img">
-            <div class="project-item-icon-box">
-              <ion-icon name="eye-outline"></ion-icon>
-            </div>
-            <img 
-              :src="getImageUrl(project.image)" 
-              :alt="project.title"
-              loading="lazy"
+          <CardContainer class="w-full h-full">
+            <CardBody
+              class="project-card-3d relative w-full h-full rounded-xl border border-black/[0.1] bg-gray-50 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] cursor-pointer"
+              @click="openModal(project)"
             >
-          </figure>
-          <h3 class="project-title">{{ project.title }}</h3>
-          <p class="project-category">{{ project.category }}</p>
+                             <CardItem
+                 translate-z="150"
+                 class="w-full h-full"
+               >
+                                 <figure class="project-img">
+                   <img 
+                     :src="getImageUrl(project.image)" 
+                     :alt="project.title"
+                     loading="lazy"
+                   >
+                 </figure>
+                <h3 class="project-title">{{ project.title }}</h3>
+                <p class="project-category">{{ project.category }}</p>
+              </CardItem>
+            </CardBody>
+          </CardContainer>
         </li>
       </ul>
     </section>
@@ -95,9 +103,15 @@
 
 <script>
 import { projects } from '@/data/projects.js';
+import { CardContainer, CardBody, CardItem } from '@/components/ui/card-3d';
 
 export default {
   name: 'PortfolioComponent',
+  components: {
+    CardContainer,
+    CardBody,
+    CardItem
+  },
   data() {
     return {
       selectedCategory: 'All',
@@ -230,21 +244,7 @@ export default {
   background: var(--eerie-black-1);
 }
 
-.project-img::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  z-index: 1;
-  transition: var(--transition-1);
-}
-
-.project-img:hover::before {
-  background: hsla(0, 0%, 0%, 0.5);
-}
+/* Removed the dark overlay on hover */
 
 .project-img img {
   width: 100%;
@@ -258,26 +258,7 @@ export default {
   transform: scale(1.1);
 }
 
-.project-item-icon-box {
-  --scale: 0.8;
-  background: var(--jet);
-  color: var(--sky-cyan);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(var(--scale));
-  font-size: 20px;
-  padding: 18px;
-  border-radius: 12px;
-  opacity: 0;
-  z-index: 2;
-  transition: var(--transition-1);
-}
-
-.project-img:hover .project-item-icon-box {
-  --scale: 1;
-  opacity: 1;
-}
+/* Removed the eye icon overlay */
 
 .project-title,
 .project-category {
@@ -296,6 +277,18 @@ export default {
   color: var(--light-gray-70);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
+}
+
+/* 3D Card styles */
+.project-card-3d {
+  background: var(--eerie-black-2) !important;
+  border: none !important;
+  overflow: hidden;
+}
+
+.project-card-3d:hover {
+  box-shadow: 0 0 25px rgba(0, 204, 255, 0.5) !important;
+  border-radius: 14px !important;
 }
 
 @media (min-width: 768px) {
