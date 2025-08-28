@@ -1,21 +1,32 @@
 <template>
-  <main>
-    <div class="container">
-      <SidebarComponent />
-      
-      <div class="main-content">
-        <NavbarComponent @page-change="handlePageChange" />
+  <div id="app">
+    <!-- Vortex Background -->
+    <VortexComponent 
+      :background-color="'#000000'"
+      :particle-count="500"
+      :base-hue="195"
+      :range-y="800"
+    />
+    
+    <!-- Main Content -->
+    <main>
+      <div class="container">
+        <SidebarComponent />
         
-        <div class="content-wrapper">
-          <AboutComponent v-if="currentPage === 'about'" />
-          <ResumeComponent v-if="currentPage === 'resume'" />
-          <PortfolioComponent v-if="currentPage === 'portfolio'" />
-          <ContactComponent v-if="currentPage === 'contact'" />
-          <HobbiesComponent v-if="currentPage === 'hobbies'" />
+        <div class="main-content">
+          <NavbarComponent @page-change="handlePageChange" />
+          
+          <div class="content-wrapper">
+            <AboutComponent v-if="currentPage === 'about'" />
+            <ResumeComponent v-if="currentPage === 'resume'" />
+            <PortfolioComponent v-if="currentPage === 'portfolio'" />
+            <ContactComponent v-if="currentPage === 'contact'" />
+            <HobbiesComponent v-if="currentPage === 'hobbies'" />
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -26,6 +37,7 @@ import ResumeComponent from './components/ResumeComponent.vue'
 import PortfolioComponent from './components/PortfolioComponent.vue'
 import ContactComponent from './components/ContactComponent.vue'
 import HobbiesComponent from './components/HobbiesComponent.vue'
+import VortexComponent from './components/VortexComponent.vue'
 
 export default {
   name: 'App',
@@ -36,7 +48,8 @@ export default {
     ResumeComponent,
     PortfolioComponent,
     ContactComponent,
-    HobbiesComponent
+    HobbiesComponent,
+    VortexComponent
   },
   data() {
     return {
@@ -58,7 +71,7 @@ html, body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: var(--smoky-black);
+  background: transparent;
 }
 
 main {
@@ -117,7 +130,7 @@ main {
 
 /* Dark theme and general styles */
 body {
-  background-color: var(--smoky-black);
+  background-color: transparent;
   color: var(--white-2);
 }
 

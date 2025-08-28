@@ -113,8 +113,9 @@ export default {
 /* Base Sidebar Styles */
 .sidebar {
   width: 100%;
-  background: var(--eerie-black-2);
-  border: 1px solid var(--jet);
+  /* background: var(--eerie-black-2); */
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 204, 255, 0.3);
   border-radius: 20px;
   padding: 15px;
   max-height: 112px;
