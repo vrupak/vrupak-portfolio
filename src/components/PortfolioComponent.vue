@@ -141,6 +141,8 @@ export default {
     },
     closeModal() {
       this.selectedProject = null;
+      // Restore body scroll when modal is closed
+      document.body.style.overflow = '';
     }
   }
 }
