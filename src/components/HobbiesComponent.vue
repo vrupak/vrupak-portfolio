@@ -132,8 +132,9 @@ const endMouse = (e) => {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0px;
     margin-top: -20px;
+    padding: 0px 0;
 }
 
 .carousel-row {
@@ -153,12 +154,12 @@ const endMouse = (e) => {
     border-radius: 12px;
     box-shadow: var(--shadow-1);
     cursor: pointer;
-    margin-right: 10px;
+    margin: 5px 10px 5px 0;
     transition: transform 0.3s ease;
 }
 
 .carousel-row img:hover {
-    transform: scale(1.05);
+    transform: scale(1.07);
 }
 
 .modal {
