@@ -47,13 +47,14 @@
                  translate-z="150"
                  class="w-full h-full"
                >
-                                 <figure class="project-img">
-                   <img 
-                     :src="getImageUrl(project.image)" 
-                     :alt="project.title"
-                     loading="lazy"
-                   >
-                 </figure>
+                                                   <figure class="project-img">
+                    <img 
+                      :src="getImageUrl(project.image)" 
+                      :alt="project.title"
+                      loading="lazy"
+                      class="project-image"
+                    >
+                  </figure>
                 <h3 class="project-title">{{ project.title }}</h3>
                 <p class="project-category">{{ project.category }}</p>
               </CardItem>
@@ -251,11 +252,6 @@ export default {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: var(--transition-1);
-}
-
-.project-img:hover img {
-  transform: scale(1.1);
 }
 
 /* Removed the eye icon overlay */
@@ -284,6 +280,7 @@ export default {
   background: var(--eerie-black-2) !important;
   border: none !important;
   overflow: hidden;
+  transition: box-shadow 0.3s ease;
 }
 
 .project-card-3d:hover {
