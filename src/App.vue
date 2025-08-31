@@ -58,12 +58,11 @@ html, body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: var(--smoky-black);
 }
 
 main {
   min-height: 100vh;
-  padding: 15px;
+  padding: 30px;
 }
 
 .container {
@@ -117,7 +116,6 @@ main {
 
 /* Dark theme and general styles */
 body {
-  background-color: var(--smoky-black);
   color: var(--white-2);
 }
 
