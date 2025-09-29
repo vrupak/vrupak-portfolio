@@ -153,7 +153,7 @@ export default {
   },
   data() {
     return {
-      resumeUrl: 'https://www.dropbox.com/scl/fi/gnwqzax8zuq0jvywyauex/VRupak_FS.pdf?rlkey=ocxwi4npye3uk9ah8qlm633xh&st=ef6bgo16&dl=0',
+      resumeUrl: 'https://www.dropbox.com/scl/fi/mz2ox9j350o7gf7bj1wzn/VRupak_AI_FS.pdf?rlkey=lnalvy9wy9qtbsruizro96drc&st=smzded04&dl=0',
       education: [
         {
           school: 'Arizona State University, USA',
