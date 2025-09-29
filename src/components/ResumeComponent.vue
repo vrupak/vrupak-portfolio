@@ -170,8 +170,8 @@ export default {
       ],
       experience: [
       {
-          role: 'AI Engineer - PulseHQ: Tempe',
-          period: '07/2025 — Present',
+          role: 'AI Engineer - Pulse AI: Tempe',
+          period: '07/2025 — 09/2025',
           description: [
             'Built a hybrid Graph RAG system combining Neo4j for entity-relationship mapping and Pinecone for vector similarity, enabling both structured and semantic document querying.',
             'Developed a multi-tenant pipeline with Supabase storage and configuration management, ensuring scalable, isolated, and secure document processing per tenant.',
