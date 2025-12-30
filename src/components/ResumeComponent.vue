@@ -43,7 +43,13 @@
 
       <ol class="timeline-list">
         <li v-for="(exp, index) in experience" :key="index" class="timeline-item">
-          <h4 class="h4 timeline-item-title">{{ exp.role }}</h4>
+          <h4 class="h4 timeline-item-title">
+            <a v-if="exp.link" :href="exp.link" target="_blank">
+              {{ exp.role }}
+              <ion-icon name="link-outline" class="link-icon"></ion-icon>
+            </a>
+            <template v-else>{{ exp.role }}</template>
+          </h4>
           <span>{{ exp.period }}</span>
           <ul class="timeline-text">
             <li v-for="(point, idx) in exp.description" :key="idx">{{ point }}</li>
@@ -63,7 +69,12 @@
 
       <ol class="timeline-list">
         <li class="timeline-item">
-          <h4 class="h4 timeline-item-title"><a href="https://nemo.asee.org/public/conferences/365/papers/46619/view" target="_blank">SUCCESS: A Summer Camp Promoting On-campus Connections in Software Engineering</a></h4>
+          <h4 class="h4 timeline-item-title">
+            <a href="https://nemo.asee.org/public/conferences/365/papers/46619/view" target="_blank">
+              SUCCESS: A Summer Camp Promoting On-campus Connections in Software Engineering
+              <ion-icon name="link-outline" class="link-icon"></ion-icon>
+            </a>
+          </h4>
           <p class="timeline-text">
             <span class="tech-label"></span>Co-author. Awarded Best Paper (Software Engineering Division) at the ASEE Conference, Montreal, 2025<br>
           </p>
@@ -153,7 +164,7 @@ export default {
   },
   data() {
     return {
-      resumeUrl: 'https://www.dropbox.com/scl/fi/mz2ox9j350o7gf7bj1wzn/VRupak_AI_FS.pdf?rlkey=lnalvy9wy9qtbsruizro96drc&st=smzded04&dl=0',
+      resumeUrl: 'https://www.dropbox.com/scl/fi/vavymssb9l6hv5rqq9bo1/VRupak_Latest_FS.pdf?rlkey=brgigm0wrxfqiaacr38y4dx5p&st=0lmo1rs7&dl=0',
       education: [
         {
           school: 'Arizona State University, USA',
@@ -169,7 +180,18 @@ export default {
         }
       ],
       experience: [
-      {
+        {
+          role: 'Open Source Contributor | Supermemory AI',
+          period: '12/2025',
+          link: 'https://github.com/supermemoryai/supermemory/commit/d93ffbb93f448236631bb39b7c8cc8dd6b99a573',
+          description: [
+            'Architected and revamped MemoryGraph, a physics-driven knowledge graph visualization merged into the core product, optimizing rendering for 500+ nodes using HTML5 Canvas and d3-force.',
+            'Improved similarity detection performance by 3x (50ms to 17ms) by implementing a k-Nearest Neighbors (k-NN) approach, reducing computational comparisons by 80%.',
+            'Engineered spatial grid indexing to manage interaction logic, preventing UI thread bottlenecks and ensuring smooth 60FPS performance on large datasets.',
+            'Won the Design Engineering - Supermemory Track at the DevHouse SF soloHackathon for delivering the most performant and intuitive visualization solution.',
+          ]
+        },
+        {
           role: 'AI Engineer - Pulse AI: Tempe',
           period: '07/2025 — 09/2025',
           description: [
@@ -435,5 +457,32 @@ export default {
   content: "-";
   position: absolute;
   left: 0;
+}
+
+.timeline-item-title a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--white-1);
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+.timeline-item-title a .link-icon {
+  font-size: 0.9em;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.timeline-item-title a:hover {
+  text-decoration: underline;
+}
+
+.timeline-item-title a:hover .link-icon {
+  opacity: 1;
+}
+
+.timeline-item-title a:visited {
+  color: var(--white-1);
 }
 </style>
