@@ -469,9 +469,11 @@ export default {
 }
 
 .timeline-item-title a .link-icon {
-  font-size: 0.9em;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  font-size: 1.1em;
+  color: var(--deep-cyan);
+  opacity: 1;
+  transition: filter 0.3s ease;
+  transform: rotate(-45deg);
 }
 
 .timeline-item-title a:hover {
@@ -479,7 +481,7 @@ export default {
 }
 
 .timeline-item-title a:hover .link-icon {
-  opacity: 1;
+  filter: brightness(1.4);
 }
 
 .timeline-item-title a:visited {
