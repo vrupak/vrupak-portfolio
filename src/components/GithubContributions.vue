@@ -92,30 +92,35 @@ function organizeWeeks(days) {
   // Generate month labels based on first appearance of each month
   const labels = []
   let previousMonth = null
-  
+  let isFirstMonth = true
+
   // Process each week to find where month changes occur
   for (let weekIndex = 0; weekIndex < weeks.value.length; weekIndex++) {
     const week = weeks.value[weekIndex]
-    
+
     // Check each day in the week
     for (let dayIndex = 0; dayIndex < week.contributionDays.length; dayIndex++) {
       const day = week.contributionDays[dayIndex]
       const date = new Date(day.date)
       const currentMonth = date.getMonth()
-      
+
       // If this is a new month we haven't seen before, or the first week
       if (previousMonth === null || currentMonth !== previousMonth) {
-        const monthName = date.toLocaleString('default', { month: 'short' })
-        labels.push({ 
-          index: weekIndex + 1, // +1 because grid columns start at 1
-          month: monthName 
-        })
+        // Skip the first month label to avoid overlap
+        if (!isFirstMonth) {
+          const monthName = date.toLocaleString('default', { month: 'short' })
+          labels.push({
+            index: weekIndex + 1, // +1 because grid columns start at 1
+            month: monthName
+          })
+        }
+        isFirstMonth = false
         previousMonth = currentMonth
         break // Only add one label per month
       }
     }
   }
-  
+
   monthLabels.value = labels
 }
 
