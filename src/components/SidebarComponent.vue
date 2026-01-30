@@ -57,7 +57,7 @@
           </div>
           <div class="contact-info">
             <p class="contact-title">Location</p>
-            <address>Tempe, Arizona, USA</address>
+            <address>Seattle, Washington, USA</address>
           </div>
         </li>
       </ul>
