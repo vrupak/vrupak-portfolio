@@ -1,11 +1,12 @@
 <template>
   <main>
+    <CustomCursor variant="v1" />
     <div class="container">
       <SidebarComponent />
-      
+
       <div class="main-content">
         <NavbarComponent @page-change="handlePageChange" />
-        
+
         <div class="content-wrapper">
           <AboutComponent v-if="currentPage === 'about'" />
           <ResumeComponent v-if="currentPage === 'resume'" />
@@ -26,6 +27,7 @@ import ResumeComponent from './components/ResumeComponent.vue'
 import PortfolioComponent from './components/PortfolioComponent.vue'
 import ContactComponent from './components/ContactComponent.vue'
 import HobbiesComponent from './components/HobbiesComponent.vue'
+import CustomCursor from './components/ui/CustomCursor.vue'
 
 export default {
   name: 'App',
@@ -36,7 +38,8 @@ export default {
     ResumeComponent,
     PortfolioComponent,
     ContactComponent,
-    HobbiesComponent
+    HobbiesComponent,
+    CustomCursor
   },
   data() {
     return {

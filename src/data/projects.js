@@ -57,11 +57,11 @@ export const projects = [
     },
     {
         id: 8,
-        title: 'Camera Store E-Commerce Prototype',
+        title: 'CRM Mock Frontend',
         category: 'Web Design',
-        link: 'https://d2ckn2.axshare.com/?g=4&id=04c1i2&p=homepage',
-        image: 'Camera-Store.png',
-        description: 'Developed a high-fidelity e-commerce prototype for a camera store using Axure RP, featuring an intuitive UI with responsive hover effects and structured information architecture. Implemented comprehensive shopping features including mega menu navigation, featured product displays, and category organization. Created interactive elements like promotional banners and newsletter signup to enhance user engagement. Design prioritizes conversion optimization while maintaining strong SEO foundations through strategic content placement and accessibility considerations.'
+        link: 'https://sapling-mock.vercel.app/',
+        image: 'CRM-Mock.png',
+        description: 'Designed and developed a high-fidelity front-end mockup of a CRM tailored for non-profit donor management using Next.js. Focused on creating an intuitive user experience for complex data sets, featuring a "Contacts" dashboard with conceptualized KPIs for 8,000+ constituents and tiered donor segmentation. Built a functional "Events" module that includes an interactive venue layout tool with drag-and-drop table placement and real-time seat capacity tracking. The project demonstrates a strong command of component-based architecture, clean data visualization, and the   ability to translate complex business requirements into a professional, user-centric interface.'
     },
     {
         id: 9,
@@ -70,5 +70,13 @@ export const projects = [
         link: 'https://er3wb8.axshare.com/?id=2im3yc&p=home&sc=3',
         image: 'Apple-Website.png',
         description: 'Recreated the main page of apple.com using Axure RP, replicating its layout, fonts, icons, colors, menus, and core interactions. Published the interactive prototype on Axshare to match the original website’s look and feel.'
-    }
+    },
+    {
+        id: 10,
+        title: 'Camera Store E-Commerce Prototype',
+        category: 'Web Design',
+        link: 'https://d2ckn2.axshare.com/?g=4&id=04c1i2&p=homepage',
+        image: 'Camera-Store.png',
+        description: 'Developed a high-fidelity e-commerce prototype for a camera store using Axure RP, featuring an intuitive UI with responsive hover effects and structured information architecture. Implemented comprehensive shopping features including mega menu navigation, featured product displays, and category organization. Created interactive elements like promotional banners and newsletter signup to enhance user engagement. Design prioritizes conversion optimization while maintaining strong SEO foundations through strategic content placement and accessibility considerations.'
+    },
 ];
